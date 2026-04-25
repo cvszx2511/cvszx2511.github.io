@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Menú del Restaurante</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f5f2;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+        background: white;
+    }
+    h1 {
+        text-align: center;
+        color: #8B0000;
+    }
+    h2 {
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+        color: #444;
+    }
+    .categoria {
+        margin-bottom: 30px;
+    }
+    .item {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+        border-bottom: 1px dashed #ddd;
+    }
+    .nombre {
+        font-weight: 500;
+    }
+    .precio {
+        color: #8B0000;
+        font-weight: bold;
+    }
+    .subtitulo {
+        font-size: 0.9em;
+        color: #777;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Menú</h1>
+
+    <!-- DESAYUNOS -->
+    <div class="categoria">
+        <h2>Desayunos</h2>
+        <div class="subtitulo">Incluye gallo pinto, tortillas y acompañamientos</div>
+
+        <div class="item"><span class="nombre">Carne en Salsa (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
+        <div class="item"><span class="nombre">Lengua en Salsa (Entero / Medio)</span><span class="precio">₡5900 / ₡5100</span></div>
+        <div class="item"><span class="nombre">Chuleta de Cerdo (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
+        <div class="item"><span class="nombre">Bistec de Res (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
+        <div class="item"><span class="nombre">Pollo (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
+        <div class="item"><span class="nombre">Pescado (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
+        <div class="item"><span class="nombre">Omelette (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
+        <div class="item"><span class="nombre">Huevo / Queso / Jamón / Salchichón / Chorizo / Natilla</span><span class="precio">₡2750 / ₡2450</span></div>
+    </div>
+
+    <!-- CASADOS -->
+    <div class="categoria">
+        <h2>Casados</h2>
+
+        <div class="item"><span class="nombre">Carne en Salsa (Entero / Medio)</span><span class="precio">₡4550 / ₡4000</span></div>
+        <div class="item"><span class="nombre">Lengua en Salsa (Entero / Medio)</span><span class="precio">₡7000 / ₡6300</span></div>
+        <div class="item"><span class="nombre">Pollo / Bistec / Chuleta / Chorizo / Pescado</span><span class="precio">₡4550 / ₡4000</span></div>
+        <div class="item"><span class="nombre">Camarón</span><span class="precio">₡5550 / ₡5000</span></div>
+        <div class="item"><span class="nombre">Costilla de Cerdo</span><span class="precio">₡4900 / ₡4400</span></div>
+    </div>
+
+    <!-- GALLOS -->
+    <div class="categoria">
+        <h2>Gallos</h2>
+
+        <div class="item"><span class="nombre">Carne en Salsa / Pollo / Bistec / Pescado</span><span class="precio">₡2700</span></div>
+        <div class="item"><span class="nombre">Lengua en Salsa</span><span class="precio">₡4500</span></div>
+        <div class="item"><span class="nombre">Salchichón / Chorizo</span><span class="precio">₡1750</span></div>
+        <div class="item"><span class="nombre">Salchichón o Chorizo Arreglado</span><span class="precio">₡2700</span></div>
+        <div class="item"><span class="nombre">Torta de Huevo</span><span class="precio">₡1500</span></div>
+        <div class="item"><span class="nombre">Queso</span><span class="precio">₡1550</span></div>
+        <div class="item"><span class="nombre">Omelette</span><span class="precio">₡3000</span></div>
+        <div class="item"><span class="nombre">Tortilla con Natilla</span><span class="precio">₡2000</span></div>
+    </div>
+
+    <!-- ARROCES -->
+    <div class="categoria">
+        <h2>Arroces</h2>
+
+        <div class="item"><span class="nombre">Pollo / Chorizo / Cerdo / Fidel</span><span class="precio">₡4400 / ₡3800</span></div>
+        <div class="item"><span class="nombre">Mixto</span><span class="precio">₡7300 / ₡6500</span></div>
+        <div class="item"><span class="nombre">Camarones</span><span class="precio">₡6300 / ₡5500</span></div>
+        <div class="item"><span class="nombre">Camarones con Arroz</span><span class="precio">₡7300 / ₡6500</span></div>
+    </div>
+
+    <!-- ADICIONALES -->
+    <div class="categoria">
+        <h2>Adicionales</h2>
+
+        <div class="item"><span class="nombre">Huevos (Tocineta / Jamón / Ranchero / Solo)</span><span class="precio">₡1550 - ₡500</span></div>
+        <div class="item"><span class="nombre">Tortilla Casera</span><span class="precio">₡600</span></div>
+        <div class="item"><span class="nombre">Ensalada / Arroz</span><span class="precio">₡1000</span></div>
+        <div class="item"><span class="nombre">Olla de Carne</span><span class="precio">₡4700</span></div>
+        <div class="item"><span class="nombre">Hamburguesa</span><span class="precio">₡4200</span></div>
+        <div class="item"><span class="nombre">Sandwiches</span><span class="precio">₡2700 - ₡5000</span></div>
+        <div class="item"><span class="nombre">Empanada / Ceviche</span><span class="precio">₡1700</span></div>
+        <div class="item"><span class="nombre">Extras (Carnes, Queso, etc.)</span><span class="precio">₡950 - ₡4000</span></div>
+        <div class="item"><span class="nombre">Papas Fritas</span><span class="precio">₡1800</span></div>
+    </div>
+
+    <!-- EXTRAS -->
+    <div class="categoria">
+        <h2>Extras</h2>
+
+        <div class="item"><span class="nombre">Maduro con Natilla o Queso</span><span class="precio">₡2650</span></div>
+        <div class="item"><span class="nombre">Aliñada (Sola / con Natilla)</span><span class="precio">₡2550 - ₡3250</span></div>
+        <div class="item"><span class="nombre">Picadillo</span><span class="precio">₡1700</span></div>
+    </div>
+
+    <!-- BEBIDAS -->
+    <div class="categoria">
+        <h2>Bebidas</h2>
+
+        <div class="item"><span class="nombre">Refresco Natural</span><span class="precio">₡1500</span></div>
+        <div class="item"><span class="nombre">Batidos</span><span class="precio">₡1850 - ₡2000</span></div>
+        <div class="item"><span class="nombre">Gaseosas</span><span class="precio">₡1000 - ₡3500</span></div>
+        <div class="item"><span class="nombre">Agua</span><span class="precio">₡1000 - ₡2000</span></div>
+        <div class="item"><span class="nombre">Otros</span><span class="precio">₡700 - ₡2700</span></div>
+    </div>
+
+    <!-- BEBIDAS CALIENTES -->
+    <div class="categoria">
+        <h2>Bebidas Calientes</h2>
+
+        <div class="item"><span class="nombre">Café / Té / Agua Dulce</span><span class="precio">₡1100</span></div>
+        <div class="item"><span class="nombre">Chocolate</span><span class="precio">₡1000</span></div>
+    </div>
+
+    <!-- NIÑOS -->
+    <div class="categoria">
+        <h2>Menú Infantil</h2>
+
+        <div class="item"><span class="nombre">Dedos de Pollo o Pescado</span><span class="precio">₡3500</span></div>
+        <div class="item"><span class="nombre">Spaguetti</span><span class="precio">₡3000</span></div>
+        <div class="item"><span class="nombre">Salchipapas</span><span class="precio">₡3000</span></div>
+        <div class="item"><span class="nombre">Arroz con Pollo</span><span class="precio">₡3000</span></div>
+    </div>
+
+</div>
+
+</body>
+</html>
