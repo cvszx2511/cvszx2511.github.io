@@ -2,162 +2,762 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Menú del Restaurante</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soda El Guácimo · Menú</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f5f2;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        max-width: 900px;
-        margin: auto;
-        padding: 20px;
-        background: white;
-    }
-    h1 {
-        text-align: center;
-        color: #8B0000;
-    }
-    h2 {
-        border-bottom: 2px solid #ddd;
-        padding-bottom: 5px;
-        color: #444;
-    }
-    .categoria {
-        margin-bottom: 30px;
-    }
-    .item {
-        display: flex;
-        justify-content: space-between;
-        padding: 6px 0;
-        border-bottom: 1px dashed #ddd;
-    }
-    .nombre {
-        font-weight: 500;
-    }
-    .precio {
-        color: #8B0000;
-        font-weight: bold;
-    }
-    .subtitulo {
-        font-size: 0.9em;
-        color: #777;
-        margin-bottom: 10px;
-    }
+:root {
+  --bg: #F7F4EF;
+  --surface: #FFFFFF;
+  --dark: #1C1009;
+  --brown: #4A2C10;
+  --gold: #C07B2A;
+  --gold-light: #E09A40;
+  --red: #B52418;
+  --muted: #8A7A6A;
+  --border: #E8E0D4;
+  --img-bg: #EDE6DC;
+  --img-icon: #C8B89A;
+  --shadow-sm: 0 1px 4px rgba(28,16,9,.07);
+  --shadow-md: 0 4px 20px rgba(28,16,9,.10);
+  --shadow-lg: 0 8px 36px rgba(28,16,9,.14);
+  --r: 14px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  background:var(--bg);
+  font-family:'DM Sans',sans-serif;
+  color:var(--dark);
+  min-height:100vh;
+}
+
+/* ── HERO ── */
+.hero{
+  background:var(--dark);
+  color:#fff;
+  text-align:center;
+  padding:52px 20px 44px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:4px;
+  background:linear-gradient(90deg,var(--red),var(--gold),var(--red));
+}
+.hero-flag{display:flex;justify-content:center;gap:5px;margin-bottom:20px;}
+.hero-flag span{display:inline-block;width:28px;height:5px;border-radius:3px;}
+.flag-b{background:#002B7F;} .flag-w{background:#fff;} .flag-r{background:#CE1126;}
+.hero-logo{font-size:48px;margin-bottom:6px;line-height:1;}
+.hero h1{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(2rem,5.5vw,3.6rem);
+  font-weight:700;
+  letter-spacing:-.01em;
+  line-height:1.08;
+}
+.hero h1 em{color:var(--gold-light);font-style:normal;}
+.hero-sub{
+  font-size:.88rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+  margin-top:10px;
+}
+
+/* ── IVA + NAV WRAPPER ── */
+.sticky-wrap{
+  position:sticky;top:0;z-index:60;
+  background:var(--brown);
+  box-shadow:0 2px 12px rgba(28,16,9,.25);
+}
+.iva-bar{
+  display:flex;align-items:center;justify-content:flex-end;
+  padding:5px 18px;gap:8px;
+  background:rgba(0,0,0,.2);
+}
+.iva-label{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.06em;}
+.iva-toggle{position:relative;width:32px;height:17px;cursor:pointer;flex-shrink:0;}
+.iva-toggle input{display:none;}
+.iva-slider{
+  position:absolute;inset:0;
+  background:rgba(255,255,255,.15);border-radius:100px;
+  transition:background .2s;
+}
+.iva-slider::after{
+  content:'';position:absolute;top:2px;left:2px;
+  width:13px;height:13px;
+  background:rgba(255,255,255,.45);border-radius:50%;
+  transition:transform .2s,background .2s;
+}
+.iva-toggle input:checked+.iva-slider{background:rgba(200,144,42,.55);}
+.iva-toggle input:checked+.iva-slider::after{transform:translateX(15px);background:var(--gold-light);}
+.iva-pct{font-family:'DM Sans',sans-serif;font-size:.67rem;color:rgba(255,255,255,.3);letter-spacing:.08em;transition:color .2s;}
+.iva-pct.active{color:var(--gold-light);}
+
+.cat-nav{
+  display:flex;overflow-x:auto;
+  padding:0 12px;gap:0;
+  scrollbar-width:none;
+  justify-content:center;
+}
+.cat-nav::-webkit-scrollbar{display:none;}
+.cat-btn{
+  flex-shrink:0;
+  font-family:'DM Sans',sans-serif;
+  font-weight:600;font-size:.77rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+  padding:13px 15px;
+  border:none;background:none;cursor:pointer;
+  border-bottom:3px solid transparent;
+  white-space:nowrap;
+  transition:color .18s,border-color .18s;
+}
+.cat-btn:hover,.cat-btn.on{color:var(--gold-light);border-bottom-color:var(--gold-light);}
+
+/* ── SECTION ── */
+.section{display:none;max-width:1100px;margin:0 auto;padding:48px 20px 64px;}
+.section.on{display:block;}
+
+.sec-head{
+  text-align:center;
+  margin-bottom:40px;
+}
+.sec-head h2{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(1.6rem,3.5vw,2.5rem);
+  font-weight:700;
+  font-style:italic;
+  color:var(--brown);
+}
+.sec-head p{
+  margin-top:8px;
+  font-size:.88rem;
+  color:var(--muted);
+  letter-spacing:.04em;
+}
+.sec-divider{
+  display:flex;align-items:center;gap:14px;
+  margin:36px 0 22px;
+}
+.sec-divider span{
+  font-family:'DM Sans',sans-serif;
+  font-weight:600;font-size:.73rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);
+  white-space:nowrap;
+}
+.sec-divider::before,.sec-divider::after{
+  content:'';flex:1;height:1px;
+  background:var(--border);
+}
+
+/* ── CARD GRID ── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:20px;
+}
+.grid.wide{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));}
+
+/* ── ITEM CARD ── */
+.card{
+  background:var(--surface);
+  border-radius:var(--r);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  border:1px solid var(--border);
+  display:flex;flex-direction:column;
+  transition:transform .2s,box-shadow .2s;
+  cursor:default;
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-md);
+}
+
+/* Photo placeholder */
+.card-img{
+  width:100%;
+  aspect-ratio:4/3;
+  background:var(--img-bg);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:8px;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.card-img::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(28,16,9,.08));
+}
+.card-img-icon{
+  font-size:36px;
+  opacity:.35;
+  line-height:1;
+}
+.card-img-label{
+  font-size:.65rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--img-icon);
+  font-weight:600;
+}
+/* Featured card tinted photo area */
+.card.hot .card-img{background:linear-gradient(135deg,#2C1008 0%,#5A2210 100%);}
+.card.hot .card-img-icon{opacity:.5;}
+.card.hot .card-img-label{color:rgba(232,184,75,.6);}
+
+/* Card body */
+.card-body{
+  padding:16px 18px 18px;
+  display:flex;flex-direction:column;
+  flex:1;
+}
+.card-en{
+  font-size:.68rem;
+  font-weight:600;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:4px;
+}
+.card-name{
+  font-family:'Libre Baskerville',serif;
+  font-size:1rem;
+  font-weight:700;
+  line-height:1.25;
+  color:var(--dark);
+}
+.card-desc{
+  font-size:.8rem;
+  color:var(--muted);
+  line-height:1.55;
+  margin-top:6px;
+  flex:1;
+}
+.card-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid var(--border);
+  gap:8px;
+}
+.card-badge{
+  font-size:.62rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 9px;border-radius:100px;
+  background:#FFF0E0;color:var(--red);
+  white-space:nowrap;
+}
+.card-price{
+  font-family:'Libre Baskerville',serif;
+  font-size:1.15rem;font-weight:700;
+  color:var(--brown);
+  margin-left:auto;
+  white-space:nowrap;
+}
+.card-price small{
+  font-family:'DM Sans',sans-serif;
+  font-size:.68rem;font-weight:400;
+  color:var(--muted);
+  margin-right:3px;
+}
+
+/* Dual price cards (casados / desayunos) */
+.dual-price{
+  display:flex;gap:16px;margin-left:auto;
+}
+.dp-col{text-align:center;}
+.dp-lbl{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:1px;}
+.dp-val{
+  font-family:'Libre Baskerville',serif;
+  font-size:.95rem;font-weight:700;color:var(--brown);
+}
+
+/* CASADO card – dark version */
+.card.dark{
+  background:var(--dark);
+  border-color:transparent;
+}
+.card.dark .card-img{background:linear-gradient(135deg,#0E0804,#3A1A08);}
+.card.dark .card-img-label{color:rgba(200,144,42,.45);}
+.card.dark .card-en{color:var(--gold-light);}
+.card.dark .card-name{color:#F5EDD8;}
+.card.dark .card-desc{color:rgba(245,237,216,.45);}
+.card.dark .card-footer{border-top-color:rgba(255,255,255,.08);}
+.card.dark .dp-lbl{color:rgba(245,237,216,.35);}
+.card.dark .dp-val{color:var(--gold-light);}
+.card.dark .card-price{color:var(--gold-light);}
+
+/* ── KIDS BAND ── */
+.kids-band{
+  background:linear-gradient(135deg,var(--red),#7A150D);
+  border-radius:var(--r);
+  overflow:hidden;
+  color:#fff;
+}
+.kids-band-head{
+  padding:28px 28px 0;
+}
+.kids-band-head h3{
+  font-family:'Libre Baskerville',serif;
+  font-size:1.5rem;font-style:italic;
+  margin-bottom:4px;
+}
+.kids-band-head p{font-size:.82rem;opacity:.6;}
+.kids-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:0;
+  margin-top:20px;
+}
+.kid-card{
+  display:flex;flex-direction:column;
+  border-top:1px solid rgba(255,255,255,.1);
+  border-right:1px solid rgba(255,255,255,.1);
+}
+.kid-img{
+  aspect-ratio:4/3;
+  background:rgba(0,0,0,.2);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:6px;font-size:30px;opacity:.55;
+}
+.kid-img span{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);font-size:.6rem;}
+.kid-body{padding:14px 16px;}
+.kid-name{font-weight:600;font-size:.88rem;line-height:1.3;}
+.kid-en{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;}
+.kid-price{
+  font-family:'Libre Baskerville',serif;
+  font-size:1.05rem;font-weight:700;
+  color:#FFD98C;margin-top:8px;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--dark);
+  color:rgba(255,255,255,.35);
+  text-align:center;
+  padding:28px 20px;
+  font-size:.8rem;letter-spacing:.04em;
+}
+footer strong{color:var(--gold-light);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .grid.wide{grid-template-columns:1fr;}
+  .card-body{padding:12px 13px 14px;}
+  .card-name{font-size:.9rem;}
+  .dual-price{gap:10px;}
+  .dp-val{font-size:.85rem;}
+}
+@media(max-width:400px){
+  .grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h1>Menú</h1>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-flag">
+    <span class="flag-b"></span><span class="flag-w"></span><span class="flag-r"></span>
+    <span class="flag-w"></span><span class="flag-b"></span>
+  </div>
+  <div class="hero-logo">🍳</div>
+  <h1>Soda El <em>Guácimo</em></h1>
+  <p class="hero-sub">Cocina costarricense · Sabor de casa</p>
+</header>
 
-    <!-- DESAYUNOS -->
-    <div class="categoria">
-        <h2>Desayunos</h2>
-        <div class="subtitulo">Incluye gallo pinto, tortillas y acompañamientos</div>
-
-        <div class="item"><span class="nombre">Carne en Salsa (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
-        <div class="item"><span class="nombre">Lengua en Salsa (Entero / Medio)</span><span class="precio">₡5900 / ₡5100</span></div>
-        <div class="item"><span class="nombre">Chuleta de Cerdo (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
-        <div class="item"><span class="nombre">Bistec de Res (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
-        <div class="item"><span class="nombre">Pollo (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
-        <div class="item"><span class="nombre">Pescado (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
-        <div class="item"><span class="nombre">Omelette (Entero / Medio)</span><span class="precio">₡3750 / ₡3000</span></div>
-        <div class="item"><span class="nombre">Huevo / Queso / Jamón / Salchichón / Chorizo / Natilla</span><span class="precio">₡2750 / ₡2450</span></div>
-    </div>
-
-    <!-- CASADOS -->
-    <div class="categoria">
-        <h2>Casados</h2>
-
-        <div class="item"><span class="nombre">Carne en Salsa (Entero / Medio)</span><span class="precio">₡4550 / ₡4000</span></div>
-        <div class="item"><span class="nombre">Lengua en Salsa (Entero / Medio)</span><span class="precio">₡7000 / ₡6300</span></div>
-        <div class="item"><span class="nombre">Pollo / Bistec / Chuleta / Chorizo / Pescado</span><span class="precio">₡4550 / ₡4000</span></div>
-        <div class="item"><span class="nombre">Camarón</span><span class="precio">₡5550 / ₡5000</span></div>
-        <div class="item"><span class="nombre">Costilla de Cerdo</span><span class="precio">₡4900 / ₡4400</span></div>
-    </div>
-
-    <!-- GALLOS -->
-    <div class="categoria">
-        <h2>Gallos</h2>
-
-        <div class="item"><span class="nombre">Carne en Salsa / Pollo / Bistec / Pescado</span><span class="precio">₡2700</span></div>
-        <div class="item"><span class="nombre">Lengua en Salsa</span><span class="precio">₡4500</span></div>
-        <div class="item"><span class="nombre">Salchichón / Chorizo</span><span class="precio">₡1750</span></div>
-        <div class="item"><span class="nombre">Salchichón o Chorizo Arreglado</span><span class="precio">₡2700</span></div>
-        <div class="item"><span class="nombre">Torta de Huevo</span><span class="precio">₡1500</span></div>
-        <div class="item"><span class="nombre">Queso</span><span class="precio">₡1550</span></div>
-        <div class="item"><span class="nombre">Omelette</span><span class="precio">₡3000</span></div>
-        <div class="item"><span class="nombre">Tortilla con Natilla</span><span class="precio">₡2000</span></div>
-    </div>
-
-    <!-- ARROCES -->
-    <div class="categoria">
-        <h2>Arroces</h2>
-
-        <div class="item"><span class="nombre">Pollo / Chorizo / Cerdo / Fidel</span><span class="precio">₡4400 / ₡3800</span></div>
-        <div class="item"><span class="nombre">Mixto</span><span class="precio">₡7300 / ₡6500</span></div>
-        <div class="item"><span class="nombre">Camarones</span><span class="precio">₡6300 / ₡5500</span></div>
-        <div class="item"><span class="nombre">Camarones con Arroz</span><span class="precio">₡7300 / ₡6500</span></div>
-    </div>
-
-    <!-- ADICIONALES -->
-    <div class="categoria">
-        <h2>Adicionales</h2>
-
-        <div class="item"><span class="nombre">Huevos (Tocineta / Jamón / Ranchero / Solo)</span><span class="precio">₡1550 - ₡500</span></div>
-        <div class="item"><span class="nombre">Tortilla Casera</span><span class="precio">₡600</span></div>
-        <div class="item"><span class="nombre">Ensalada / Arroz</span><span class="precio">₡1000</span></div>
-        <div class="item"><span class="nombre">Olla de Carne</span><span class="precio">₡4700</span></div>
-        <div class="item"><span class="nombre">Hamburguesa</span><span class="precio">₡4200</span></div>
-        <div class="item"><span class="nombre">Sandwiches</span><span class="precio">₡2700 - ₡5000</span></div>
-        <div class="item"><span class="nombre">Empanada / Ceviche</span><span class="precio">₡1700</span></div>
-        <div class="item"><span class="nombre">Extras (Carnes, Queso, etc.)</span><span class="precio">₡950 - ₡4000</span></div>
-        <div class="item"><span class="nombre">Papas Fritas</span><span class="precio">₡1800</span></div>
-    </div>
-
-    <!-- EXTRAS -->
-    <div class="categoria">
-        <h2>Extras</h2>
-
-        <div class="item"><span class="nombre">Maduro con Natilla o Queso</span><span class="precio">₡2650</span></div>
-        <div class="item"><span class="nombre">Aliñada (Sola / con Natilla)</span><span class="precio">₡2550 - ₡3250</span></div>
-        <div class="item"><span class="nombre">Picadillo</span><span class="precio">₡1700</span></div>
-    </div>
-
-    <!-- BEBIDAS -->
-    <div class="categoria">
-        <h2>Bebidas</h2>
-
-        <div class="item"><span class="nombre">Refresco Natural</span><span class="precio">₡1500</span></div>
-        <div class="item"><span class="nombre">Batidos</span><span class="precio">₡1850 - ₡2000</span></div>
-        <div class="item"><span class="nombre">Gaseosas</span><span class="precio">₡1000 - ₡3500</span></div>
-        <div class="item"><span class="nombre">Agua</span><span class="precio">₡1000 - ₡2000</span></div>
-        <div class="item"><span class="nombre">Otros</span><span class="precio">₡700 - ₡2700</span></div>
-    </div>
-
-    <!-- BEBIDAS CALIENTES -->
-    <div class="categoria">
-        <h2>Bebidas Calientes</h2>
-
-        <div class="item"><span class="nombre">Café / Té / Agua Dulce</span><span class="precio">₡1100</span></div>
-        <div class="item"><span class="nombre">Chocolate</span><span class="precio">₡1000</span></div>
-    </div>
-
-    <!-- NIÑOS -->
-    <div class="categoria">
-        <h2>Menú Infantil</h2>
-
-        <div class="item"><span class="nombre">Dedos de Pollo o Pescado</span><span class="precio">₡3500</span></div>
-        <div class="item"><span class="nombre">Spaguetti</span><span class="precio">₡3000</span></div>
-        <div class="item"><span class="nombre">Salchipapas</span><span class="precio">₡3000</span></div>
-        <div class="item"><span class="nombre">Arroz con Pollo</span><span class="precio">₡3000</span></div>
-    </div>
-
+<!-- STICKY NAV -->
+<div class="sticky-wrap">
+  <div class="iva-bar">
+    <span class="iva-label">+ IVA 13%</span>
+    <label class="iva-toggle">
+      <input type="checkbox" id="ivaToggle" onchange="toggleIva(this)">
+      <span class="iva-slider"></span>
+    </label>
+    <span class="iva-pct" id="ivaPct">OFF</span>
+  </div>
+  <nav class="cat-nav">
+    <button class="cat-btn on"  onclick="show('casados')">Casados</button>
+    <button class="cat-btn"     onclick="show('desayunos')">Desayunos</button>
+    <button class="cat-btn"     onclick="show('arroces')">Arroces</button>
+    <button class="cat-btn"     onclick="show('gallos')">Gallos</button>
+    <button class="cat-btn"     onclick="show('adicionales')">Adicionales</button>
+    <button class="cat-btn"     onclick="show('bebidas')">Bebidas</button>
+    <button class="cat-btn"     onclick="show('ninos')">Niños</button>
+  </nav>
 </div>
 
+<!-- ──────────────────────── CASADOS ──────────────────────── -->
+<section id="casados" class="section on">
+  <div class="sec-head">
+    <h2>Casados</h2>
+    <p>Incluye arroz, frijoles, ensalada, maduro y tortilla casera</p>
+  </div>
+  <div class="grid wide">
+
+    <div class="card dark">
+      <div class="card-img"><div class="card-img-icon">🍽️</div><div class="card-img-label">Foto del platillo</div></div>
+      <div class="card-body">
+        <div class="card-en">Beef in Sauce</div>
+        <div class="card-name">Carne en Salsa</div>
+        <div class="card-desc">Tender beef simmered in a savory tomato-based house sauce, served with the full casado accompaniments.</div>
+        <div class="card-footer">
+          <div class="dual-price">
+            <div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4550">₡4.550</span></div>
+            <div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="4000">₡4.000</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card dark hot">
+      <div class="card-img"><div class="card-img-icon">⭐</div><div class="card-img-label">Foto del platillo</div></div>
+      <div class="card-body">
+        <div class="card-en">Beef Tongue · Specialty</div>
+        <div class="card-name">Lengua en Salsa</div>
+        <div class="card-desc">Slow-cooked beef tongue in a rich traditional sauce — a true Costa Rican delicacy.</div>
+        <div class="card-footer">
+          <div class="dual-price">
+            <div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="7000">₡7.000</span></div>
+            <div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="6300">₡6.300</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card dark">
+      <div class="card-img"><div class="card-img-icon">🍗</div><div class="card-img-label">Foto del platillo</div></div>
+      <div class="card-body">
+        <div class="card-en">Chicken</div>
+        <div class="card-name">Pollo</div>
+        <div class="card-desc">Grilled or sautéed seasoned chicken breast with all the classic sides.</div>
+        <div class="card-footer"><div class="dual-price">
+          <div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4550">₡4.550</span></div>
+          <div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="4000">₡4.000</span></div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="card dark">
+      <div class="card-img"><div class="card-img-icon">🥩</div><div class="card-img-label">Foto del platillo</div></div>
+      <div class="card-body">
+        <div class="card-en">Beef Steak</div>
+        <div class="card-name">Bistec de Res</div>
+        <div class="card-desc">Pan-seared thin beef steak, lightly seasoned, served with full accompaniments.</div>
+        <div class="card-footer"><div class="dual-price">
+          <div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4550">₡4.550</span></div>
+          <div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="4000">₡4.000</span></div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="card dark">
+      <div class="card-img"><div class="card-img-icon">🥓</div><div class="card-img-label">Foto del platillo</div></div>
+      <div class="card-body">
+        <div class="card-en">Pork Chop</div>
+        <div class="card-name">Chuleta de Cerdo</div>
+        <div class="card-desc">Juicy bone-in pork chop, grilled to order with classic casado sides.</div>
+        <div class="card-footer"><div class="dual-price">
+          <div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4550">₡4.550</span></div>
+          <div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="4000">₡4.000</span></div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="card dark">
+      <div class="card-img"><div class="card-img-icon">🌭</div><div class="card-img-label">Foto del platillo</div></div>
+      <div class="card-body">
+        <div class="card-en">Sausage</div>
+        <div class="card-name">Chorizo</div>
+        <div class="card-desc">Sliced Costa Rican-style pork sausage paired with all the casado sides.</div>
+        <div class="card-footer"><div class="dual-price">
+          <div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4550">₡4.550</span></div>
+          <div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="4000">₡4.000</span></div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="card dark">
+      <div class="card-img"><div class="card-img-icon">🐟</div><div class="card-img-label">Foto del platillo</div></div>
+      <div class="card-body">
+        <div class="card-en">Fish</div>
+        <div class="card-name">Pescado</div>
+        <div class="card-desc">Fresh fillet, lightly fried or grilled, served with the full casado plate.</div>
+        <div class="card-footer"><div class="dual-price">
+          <div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4550">₡4.550</span></div>
+          <div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="4000">₡4.000</span></div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="card dark hot">
+      <div class="card-img"><div class="card-img-icon">🦐</div><div class="card-img-label">Foto del platillo</div></div>
+      <div class="card-body">
+        <div class="card-en">Shrimp</div>
+        <div class="card-name">Camarón</div>
+        <div class="card-desc">Sautéed shrimp with garlic and spices, served with all casado accompaniments.</div>
+        <div class="card-footer"><div class="dual-price">
+          <div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="5550">₡5.550</span></div>
+          <div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="5000">₡5.000</span></div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="card dark">
+      <div class="card-img"><div class="card-img-icon">🍖</div><div class="card-img-label">Foto del platillo</div></div>
+      <div class="card-body">
+        <div class="card-en">Rib Chop</div>
+        <div class="card-name">Costilla de Cerdo</div>
+        <div class="card-desc">Meaty pork rib, grilled and flavorful, served with the classic casado sides.</div>
+        <div class="card-footer"><div class="dual-price">
+          <div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4900">₡4.900</span></div>
+          <div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="4400">₡4.400</span></div>
+        </div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ──────────────────────── DESAYUNOS ──────────────────────── -->
+<section id="desayunos" class="section">
+  <div class="sec-head">
+    <h2>Desayunos</h2>
+    <p>Gallo Pinto con maduro y tortilla casera — elija su proteína</p>
+  </div>
+  <div class="grid">
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍳</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Beef in Sauce</div><div class="card-name">Carne en Salsa</div><div class="card-desc">Tender beef in tomato sauce with Gallo Pinto, ripe plantain and tortilla.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="3750">₡3.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="3000">₡3.000</span></div></div></div></div></div>
+
+    <div class="card hot"><div class="card-img"><div class="card-img-icon">⭐</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Beef Tongue</div><div class="card-name">Lengua en Salsa</div><div class="card-desc">Slow-cooked tongue, a beloved Costa Rican specialty with Gallo Pinto.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="5900">₡5.900</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="5100">₡5.100</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥩</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Pork Chop</div><div class="card-name">Chuleta de Cerdo</div><div class="card-desc">Grilled bone-in pork chop served with Gallo Pinto and tortilla.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="3750">₡3.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="3000">₡3.000</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥩</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Beef Steak</div><div class="card-name">Bistec de Res</div><div class="card-desc">Thin pan-seared steak, classic breakfast style with Gallo Pinto.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="3750">₡3.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="3000">₡3.000</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍗</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Chicken</div><div class="card-name">Pollo</div><div class="card-desc">Seasoned chicken with Gallo Pinto, plantain and tortilla.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="3750">₡3.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="3000">₡3.000</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🐟</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Fish</div><div class="card-name">Pescado</div><div class="card-desc">Fresh fillet paired with Gallo Pinto and a warm tortilla.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="3750">₡3.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="3000">₡3.000</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍳</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Omelette</div><div class="card-name">Omelette</div><div class="card-desc">Fluffy egg omelette with your choice of fillings and Gallo Pinto.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="3750">₡3.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="3000">₡3.000</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Egg</div><div class="card-name">Huevo</div><div class="card-desc">Fried or scrambled egg with Gallo Pinto and tortilla.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="2750">₡2.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="2450">₡2.450</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🧀</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Cheese</div><div class="card-name">Queso</div><div class="card-desc">Local white cheese, melted or sliced, with Gallo Pinto.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="2750">₡2.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="2450">₡2.450</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍖</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Ham</div><div class="card-name">Jamón</div><div class="card-desc">Sliced ham lightly pan-cooked with Gallo Pinto and tortilla.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="2750">₡2.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="2450">₡2.450</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌭</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Salami</div><div class="card-name">Salchichón</div><div class="card-desc">Sliced cured salami sausage with Gallo Pinto.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="2750">₡2.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="2450">₡2.450</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌭</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Sausage</div><div class="card-name">Chorizo</div><div class="card-desc">Grilled Costa Rican pork sausage with Gallo Pinto.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="2750">₡2.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="2450">₡2.450</span></div></div></div></div></div>
+
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥛</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Sour Cream</div><div class="card-name">Natilla</div><div class="card-desc">Thick Costa Rican-style sour cream, a classic breakfast staple.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="2750">₡2.750</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="2450">₡2.450</span></div></div></div></div></div>
+
+  </div>
+</section>
+
+<!-- ──────────────────────── ARROCES ──────────────────────── -->
+<section id="arroces" class="section">
+  <div class="sec-head"><h2>Arroces &amp; Otros</h2></div>
+
+  <div class="sec-divider"><span>Arroces / Rice Dishes</span></div>
+  <div class="grid">
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍗</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Chicken Rice</div><div class="card-name">Arroz con Pollo</div><div class="card-desc">Classic rice stir-fried with tender chicken and vegetables.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4400">₡4.400</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="3800">₡3.800</span></div></div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Sausage Rice</div><div class="card-name">Arroz con Chorizo</div><div class="card-desc">Savory rice cooked with sliced pork sausage.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4400">₡4.400</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="3800">₡3.800</span></div></div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Pork Rice</div><div class="card-name">Arroz con Cerdo</div><div class="card-desc">Rice tossed with seasoned shredded pork.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4400">₡4.400</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="3800">₡3.800</span></div></div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Fidel Rice</div><div class="card-name">Arroz Fidel</div><div class="card-desc">House-style mixed rice with a special blend of meats.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="4400">₡4.400</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="3800">₡3.800</span></div></div></div></div></div>
+    <div class="card hot"><div class="card-img"><div class="card-img-icon">🌱</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Mixed Rice</div><div class="card-name">Arroz Mixto</div><div class="card-desc">A generous mix of chicken, pork, sausage and more in one plate.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="7300">₡7.300</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="6500">₡6.500</span></div></div></div></div></div>
+    <div class="card hot"><div class="card-img"><div class="card-img-icon">🦐</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Shrimp Rice</div><div class="card-name">Arroz con Camarones</div><div class="card-desc">Fragrant rice cooked with perfectly seasoned shrimp.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="6300">₡6.300</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="5500">₡5.500</span></div></div></div></div></div>
+    <div class="card hot"><div class="card-img"><div class="card-img-icon">🦐</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Shrimp with Rice</div><div class="card-name">Camarones con Arroz</div><div class="card-desc">Larger shrimp portion served over white rice.</div><div class="card-footer"><div class="dual-price"><div class="dp-col"><span class="dp-lbl">Entero</span><span class="dp-val price-val" data-base="7300">₡7.300</span></div><div class="dp-col"><span class="dp-lbl">Medio</span><span class="dp-val price-val" data-base="6500">₡6.500</span></div></div></div></div></div>
+  </div>
+
+  <div class="sec-divider"><span>Otros / Others</span></div>
+  <div class="grid">
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍌</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Sweet Plantain</div><div class="card-name">Maduro con Natilla o Queso</div><div class="card-desc">Ripe fried plantain topped with sour cream or local white cheese.</div><div class="card-footer"><div class="card-price price-val" data-base="2650">₡2.650</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🫓</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Seasoned Corn Dough</div><div class="card-name">Aliñada Sola</div><div class="card-desc">Traditional masa patty, pan-cooked and lightly seasoned.</div><div class="card-footer"><div class="card-price price-val" data-base="2550">₡2.550</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🫓</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Corn Dough + Sour Cream</div><div class="card-name">Aliñada con Natilla</div><div class="card-desc">Aliñada topped with creamy Costa Rican natilla.</div><div class="card-footer"><div class="card-price price-val" data-base="3250">₡3.250</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥘</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Minced Stew</div><div class="card-name">Picadillo</div><div class="card-desc">Finely chopped vegetables and meat, Costa Rican style.</div><div class="card-footer"><div class="card-price price-val" data-base="1700">₡1.700</div></div></div></div>
+  </div>
+</section>
+
+<!-- ──────────────────────── GALLOS ──────────────────────── -->
+<section id="gallos" class="section">
+  <div class="sec-head"><h2>Gallos</h2><p>Tortilla casera con el relleno de su preferencia</p></div>
+  <div class="grid">
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌮</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Beef in Sauce</div><div class="card-name">Carne en Salsa</div><div class="card-desc">Saucy braised beef on a fresh corn tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="2700">₡2.700</div></div></div></div>
+    <div class="card hot"><div class="card-img"><div class="card-img-icon">⭐</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Beef Tongue</div><div class="card-name">Lengua en Salsa</div><div class="card-desc">Tender slow-cooked tongue on a warm corn tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="4500">₡4.500</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌮</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Chicken</div><div class="card-name">Pollo</div><div class="card-desc">Shredded seasoned chicken on a warm corn tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="2700">₡2.700</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌮</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Beef Steak</div><div class="card-name">Bistec</div><div class="card-desc">Thin sliced beef on a warm corn tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="2700">₡2.700</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌮</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Fish</div><div class="card-name">Pescado</div><div class="card-desc">Flaked fried fish on a warm corn tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="2700">₡2.700</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌮</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Salami</div><div class="card-name">Salchichón</div><div class="card-desc">Simple sliced cured sausage on tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="1750">₡1.750</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌮</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Dressed Salami</div><div class="card-name">Salchichón Arreglado</div><div class="card-desc">Salami with cabbage, tomato and sauce on tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="2700">₡2.700</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌮</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Sausage</div><div class="card-name">Chorizo</div><div class="card-desc">Sliced grilled pork sausage on a corn tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="1750">₡1.750</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌮</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Dressed Sausage</div><div class="card-name">Chorizo Arreglado</div><div class="card-desc">Chorizo with veggies and condiments on tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="2700">₡2.700</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Egg</div><div class="card-name">Torta de Huevo</div><div class="card-desc">Small egg fritter on a corn tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="1500">₡1.500</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🧀</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Cheese</div><div class="card-name">Queso</div><div class="card-desc">Melted local white cheese on a warm tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="1550">₡1.550</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Omelette</div><div class="card-name">Omelete</div><div class="card-desc">Folded egg omelette served on a corn tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="3000">₡3.000</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌮</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Tortilla + Sour Cream</div><div class="card-name">Tortilla con Natilla</div><div class="card-desc">Corn tortilla generously topped with creamy natilla.</div><div class="card-footer"><div class="card-price price-val" data-base="2000">₡2.000</div></div></div></div>
+  </div>
+</section>
+
+<!-- ──────────────────────── ADICIONALES ──────────────────────── -->
+<section id="adicionales" class="section">
+  <div class="sec-head"><h2>Adicionales</h2></div>
+
+  <div class="sec-divider"><span>Platillos / Dishes</span></div>
+  <div class="grid wide">
+    <div class="card hot"><div class="card-img"><div class="card-img-icon">🍲</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Beef &amp; Vegetable Stew</div><div class="card-name">Olla de Carne</div><div class="card-desc">Hearty traditional soup with beef, yuca, corn, chayote and plantain. A comforting Costa Rican classic.</div><div class="card-footer"><span class="card-badge">Martes y Viernes · Tue &amp; Fri</span><div class="card-price price-val" data-base="4700">₡4.700</div></div></div></div>
+    <div class="card hot"><div class="card-img"><div class="card-img-icon">🍔</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Burger</div><div class="card-name">Hamburguesa</div><div class="card-desc">Beef patty with lettuce, tomato and condiments on a soft bun.</div><div class="card-footer"><div class="card-price price-val" data-base="4200">₡4.200</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🐟</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Fish Ceviche</div><div class="card-name">Ceviche de Pescado</div><div class="card-desc">Fresh fish marinated in citrus with cilantro and onion.</div><div class="card-footer"><div class="card-price price-val" data-base="1700">₡1.700</div></div></div></div>
+    <div class="card hot"><div class="card-img"><div class="card-img-icon">🦐</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Shrimp Order</div><div class="card-name">Orden de Camarones</div><div class="card-desc">Seasoned sautéed shrimp, great as a starter or side.</div><div class="card-footer"><div class="card-price price-val" data-base="2500">₡2.500</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🫓</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Stuffed Turnover</div><div class="card-name">Empanada</div><div class="card-desc">Crispy dough filled with beef, chicken, beans, bean-cheese or cheese — ask your server.</div><div class="card-footer"><div class="card-price price-val" data-base="1700">₡1.700</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥪</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Beef Sandwich</div><div class="card-name">Sandwich de Carne</div><div class="card-desc">Sliced beef with fresh toppings on bread.</div><div class="card-footer"><div class="card-price price-val" data-base="2700">₡2.700</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥪</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Tongue Sandwich</div><div class="card-name">Sandwich de Lengua</div><div class="card-desc">Tender slow-cooked beef tongue on fresh bread.</div><div class="card-footer"><div class="card-price price-val" data-base="5000">₡5.000</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥪</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Chicken Sandwich</div><div class="card-name">Sandwich de Pollo</div><div class="card-desc">Seasoned chicken breast with fresh toppings.</div><div class="card-footer"><div class="card-price price-val" data-base="2700">₡2.700</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥪</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Ham &amp; Cheese Sandwich</div><div class="card-name">Sandwich de Jamón y Queso</div><div class="card-desc">Classic toasted ham and melted cheese sandwich.</div><div class="card-footer"><div class="card-price price-val" data-base="2700">₡2.700</div></div></div></div>
+  </div>
+
+  <div class="sec-divider"><span>Huevos / Eggs</span></div>
+  <div class="grid">
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Egg &amp; Bacon</div><div class="card-name">Huevo con Tocineta</div><div class="card-desc">Fried or scrambled egg with crispy bacon strips.</div><div class="card-footer"><div class="card-price price-val" data-base="1550">₡1.550</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍖</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Egg &amp; Ham</div><div class="card-name">Huevo con Jamón</div><div class="card-desc">Egg cooked to order alongside pan-warmed ham.</div><div class="card-footer"><div class="card-price price-val" data-base="1550">₡1.550</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Rancher Egg</div><div class="card-name">Huevo Ranchero</div><div class="card-desc">Egg in a light tomato and onion sauce.</div><div class="card-footer"><div class="card-price price-val" data-base="1100">₡1.100</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Single Egg</div><div class="card-name">Huevo Solo</div><div class="card-desc">One egg, fried or scrambled your way.</div><div class="card-footer"><div class="card-price price-val" data-base="500">₡500</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🫓</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Homemade Tortilla</div><div class="card-name">Tortilla Casera</div><div class="card-desc">Freshly pressed and pan-cooked corn tortilla.</div><div class="card-footer"><div class="card-price price-val" data-base="600">₡600</div></div></div></div>
+  </div>
+
+  <div class="sec-divider"><span>Extras / Add-ons</span></div>
+  <div class="grid">
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥗</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Side Salad</div><div class="card-name">Orden de Ensalada</div><div class="card-desc">Fresh cabbage and tomato salad.</div><div class="card-footer"><div class="card-price price-val" data-base="1000">₡1.000</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Side Rice</div><div class="card-name">Orden de Arroz</div><div class="card-desc">Plain steamed white rice.</div><div class="card-footer"><div class="card-price price-val" data-base="1000">₡1.000</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍌</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Side Plantain</div><div class="card-name">Orden de Plátano</div><div class="card-desc">Sweet ripe fried plantain slices.</div><div class="card-footer"><div class="card-price price-val" data-base="1000">₡1.000</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍟</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">French Fries</div><div class="card-name">Papas Fritas</div><div class="card-desc">Crispy golden potato fries.</div><div class="card-footer"><div class="card-price price-val" data-base="1800">₡1.800</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍚</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Gallo Pinto</div><div class="card-name">Pinto Solo</div><div class="card-desc">Costa Rica's iconic rice and black bean mix.</div><div class="card-footer"><div class="card-price price-val" data-base="1500">₡1.500</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥓</div><div class="card-img-label">Foto del platillo</div></div><div class="card-body"><div class="card-en">Bacon</div><div class="card-name">Tocineta</div><div class="card-desc">Crispy strips of cured bacon.</div><div class="card-footer"><div class="card-price price-val" data-base="950">₡950</div></div></div></div>
+  </div>
+</section>
+
+<!-- ──────────────────────── BEBIDAS ──────────────────────── -->
+<section id="bebidas" class="section">
+  <div class="sec-head"><h2>Bebidas</h2></div>
+
+  <div class="sec-divider"><span>Frías / Cold</span></div>
+  <div class="grid">
+    <div class="card"><div class="card-img"><div class="card-img-icon">🧃</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Fresh Juice</div><div class="card-name">Refrescos Naturales</div><div class="card-desc">Seasonal fruit blended with water and sugar.</div><div class="card-footer"><div class="card-price price-val" data-base="1500">₡1.500</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥤</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Water Smoothie</div><div class="card-name">Batidos en Agua</div><div class="card-desc">Fruit blended with water, light and refreshing.</div><div class="card-footer"><div class="card-price price-val" data-base="1850">₡1.850</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥛</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Milk Smoothie</div><div class="card-name">Batidos en Leche</div><div class="card-desc">Creamy fruit smoothie made with fresh milk.</div><div class="card-footer"><div class="card-price price-val" data-base="2000">₡2.000</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🧊</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Shaved Ice</div><div class="card-name">Granizados</div><div class="card-desc">Crushed ice with fruit syrup, a refreshing treat.</div><div class="card-footer"><div class="card-price price-val" data-base="2700">₡2.700</div></div></div></div>
+    <div class="card hot"><div class="card-img"><div class="card-img-icon">🍨</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Fruit Plate + Ice Cream</div><div class="card-name">Plato de Frutas con Helado</div><div class="card-desc">Seasonal fresh fruits with a scoop of ice cream.</div><div class="card-footer"><div class="card-price price-val" data-base="2600">₡2.600</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍓</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Fruit Plate</div><div class="card-name">Plato de Frutas</div><div class="card-desc">Sliced seasonal fresh fruits.</div><div class="card-footer"><div class="card-price price-val" data-base="2000">₡2.000</div></div></div></div>
+    <div class="card hot"><div class="card-img"><div class="card-img-icon">☕</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Iced Coffee</div><div class="card-name">Café Frío</div><div class="card-desc">Chilled Costa Rican coffee served over ice.</div><div class="card-footer"><div class="card-price price-val" data-base="2500">₡2.500</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥤</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Glass Bottle Coke</div><div class="card-name">Coca Cola en Vidrio</div><div class="card-desc">Classic Coke in the iconic glass bottle.</div><div class="card-footer"><div class="card-price price-val" data-base="1000">₡1.000</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥤</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Plastic Soda</div><div class="card-name">Gaseosa Desechable</div><div class="card-desc">Assorted sodas in single-use bottle.</div><div class="card-footer"><div class="card-price price-val" data-base="1400">₡1.400</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🥤</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Tropical Soda</div><div class="card-name">Tropical Desechable</div><div class="card-desc">Costa Rican-favourite fruit soda.</div><div class="card-footer"><div class="card-price price-val" data-base="1300">₡1.300</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍾</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">3-Liter Soda</div><div class="card-name">Gaseosa 3 Litros</div><div class="card-desc">Large bottle, perfect for the whole table.</div><div class="card-footer"><div class="card-price price-val" data-base="3500">₡3.500</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍺</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Malta</div><div class="card-name">Maxi Malta</div><div class="card-desc">Non-alcoholic malt beverage, rich and sweet.</div><div class="card-footer"><div class="card-price price-val" data-base="950">₡950</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">⚡</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Energy Drink</div><div class="card-name">Bebida Energética</div><div class="card-desc">Canned energy boost.</div><div class="card-footer"><div class="card-price price-val" data-base="1650">₡1.650</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🧃</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Kerns Juice</div><div class="card-name">Jugo Kerns</div><div class="card-desc">Canned tropical fruit nectar.</div><div class="card-footer"><div class="card-price price-val" data-base="1000">₡1.000</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍅</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Tomato Juice</div><div class="card-name">Jugo de Tomate</div><div class="card-desc">With or without a chili pepper kick.</div><div class="card-footer"><div class="card-price price-val" data-base="700">₡700</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌿</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Aloe Vera Drink</div><div class="card-name">Aloe</div><div class="card-desc">Light and soothing aloe vera beverage.</div><div class="card-footer"><div class="card-price price-val" data-base="1400">₡1.400</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🧊</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Small Water · 500ml</div><div class="card-name">Agua Pequeña</div><div class="card-desc">Still water, small bottle.</div><div class="card-footer"><div class="card-price price-val" data-base="1000">₡1.000</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🧊</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Medium Water · 1L</div><div class="card-name">Agua Mediana</div><div class="card-desc">Still water, medium bottle.</div><div class="card-footer"><div class="card-price price-val" data-base="1500">₡1.500</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🧊</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Large Water · 1.5L</div><div class="card-name">Agua Grande</div><div class="card-desc">Still water, large bottle.</div><div class="card-footer"><div class="card-price price-val" data-base="2000">₡2.000</div></div></div></div>
+  </div>
+
+  <div class="sec-divider"><span>Calientes / Hot</span></div>
+  <div class="grid">
+    <div class="card"><div class="card-img"><div class="card-img-icon">☕</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Black Coffee or with Milk</div><div class="card-name">Café Negro / con Leche</div><div class="card-desc">Costa Rican brewed coffee, black or with milk.</div><div class="card-footer"><div class="card-price price-val" data-base="1100">₡1.100</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍵</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Sugarcane Hot Drink</div><div class="card-name">Agua Dulce</div><div class="card-desc">Traditional hot drink made from raw cane sugar — black or with milk.</div><div class="card-footer"><div class="card-price price-val" data-base="1100">₡1.100</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍵</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Black Tea or with Milk</div><div class="card-name">Té Negro / con Leche</div><div class="card-desc">Classic black tea served hot.</div><div class="card-footer"><div class="card-price price-val" data-base="1100">₡1.100</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🌼</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Chamomile Tea</div><div class="card-name">Té de Manzanilla</div><div class="card-desc">Soothing herbal chamomile infusion.</div><div class="card-footer"><div class="card-price price-val" data-base="1100">₡1.100</div></div></div></div>
+    <div class="card"><div class="card-img"><div class="card-img-icon">🍫</div><div class="card-img-label">Foto del producto</div></div><div class="card-body"><div class="card-en">Hot Chocolate</div><div class="card-name">Chocolate</div><div class="card-desc">Warm and comforting cocoa drink.</div><div class="card-footer"><div class="card-price price-val" data-base="1000">₡1.000</div></div></div></div>
+  </div>
+</section>
+
+<!-- ──────────────────────── NIÑOS ──────────────────────── -->
+<section id="ninos" class="section">
+  <div class="sec-head"><h2>Menú para Niños</h2><p>Kids' Menu</p></div>
+  <div class="kids-band">
+    <div class="kids-band-head">
+      <h3>🍽️ Menú Infantil</h3>
+      <p>Porciones especiales para los más pequeños</p>
+    </div>
+    <div class="kids-grid">
+      <div class="kid-card">
+        <div class="kid-img"><div>🍗</div><span>Foto del platillo</span></div>
+        <div class="kid-body"><div class="kid-name">Dedos de Pollo o Pescado con Papas</div><div class="kid-en">Chicken or Fish Fingers with Fries</div><div class="kid-price price-val" data-base="3500">₡3.500</div></div>
+      </div>
+      <div class="kid-card">
+        <div class="kid-img"><div>🍝</div><span>Foto del platillo</span></div>
+        <div class="kid-body"><div class="kid-name">Spaghetti Mantequilla y Queso</div><div class="kid-en">Buttered Spaghetti with Cheese</div><div class="kid-price price-val" data-base="3000">₡3.000</div></div>
+      </div>
+      <div class="kid-card">
+        <div class="kid-img"><div>🌭</div><span>Foto del platillo</span></div>
+        <div class="kid-body"><div class="kid-name">Salchipapas</div><div class="kid-en">Sausage Slices with Fries</div><div class="kid-price price-val" data-base="3000">₡3.000</div></div>
+      </div>
+      <div class="kid-card">
+        <div class="kid-img"><div>🍚</div><span>Foto del platillo</span></div>
+        <div class="kid-body"><div class="kid-name">Arroz con Pollo</div><div class="kid-en">Chicken Rice</div><div class="kid-price price-val" data-base="3000">₡3.000</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>🍳 <strong>Soda El Guácimo</strong> &nbsp;·&nbsp; Precios sin IVA &nbsp;·&nbsp; Costa Rica 🇨🇷</p>
+</footer>
+
+<script>
+const IVA = 0.13;
+let ivaOn = false;
+
+function fmt(n){ return '₡' + n.toLocaleString('es-CR').replace(/,/g,'.'); }
+
+function initPrices(){
+  document.querySelectorAll('.price-val').forEach(el=>{
+    const raw = el.textContent.replace('₡','').replace(/\./g,'');
+    const n = parseInt(raw,10);
+    if(!isNaN(n)) el.dataset.base = n;
+  });
+}
+
+function renderPrices(){
+  document.querySelectorAll('.price-val').forEach(el=>{
+    const base = parseInt(el.dataset.base,10);
+    if(isNaN(base)) return;
+    el.textContent = fmt(ivaOn ? Math.round(base*(1+IVA)) : base);
+  });
+}
+
+function toggleIva(cb){
+  ivaOn = cb.checked;
+  document.getElementById('ivaPct').textContent = ivaOn ? 'ON' : 'OFF';
+  document.getElementById('ivaPct').classList.toggle('active', ivaOn);
+  renderPrices();
+}
+
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const ids = ['casados','desayunos','arroces','gallos','adicionales','bebidas','ninos'];
+  document.querySelectorAll('.cat-btn')[ids.indexOf(id)].classList.add('on');
+  window.scrollTo({top:document.querySelector('.sticky-wrap').offsetTop,behavior:'smooth'});
+}
+
+window.addEventListener('DOMContentLoaded', initPrices);
+</script>
 </body>
 </html>
