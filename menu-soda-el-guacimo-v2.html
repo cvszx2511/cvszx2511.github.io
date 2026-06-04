@@ -99,6 +99,38 @@ body{
 .iva-pct{font-family:'DM Sans',sans-serif;font-size:.67rem;color:rgba(255,255,255,.3);letter-spacing:.08em;transition:color .2s;}
 .iva-pct.active{color:var(--gold-light);}
 
+/* ── IMAGE TOGGLE BUTTON ── */
+.img-btn{
+  font-family:'DM Sans',sans-serif;
+  font-size:.67rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:100px;
+  padding:3px 10px;cursor:pointer;
+  transition:all .2s;
+  margin-right:auto;
+}
+.img-btn.active{color:var(--gold-light);border-color:rgba(200,144,42,.4);background:rgba(200,144,42,.12);}
+
+/* ── NO IMAGES MODE ── */
+body.no-imgs .card-img,
+body.no-imgs .kid-img{display:none;}
+body.no-imgs .card-desc,
+body.no-imgs .card-en{display:none;}
+body.no-imgs .card{flex-direction:row;align-items:center;}
+body.no-imgs .card-body{flex-direction:row;align-items:center;padding:11px 14px;}
+body.no-imgs .card-name{flex:1;min-width:0;}
+body.no-imgs .card-footer{border-top:none;margin-top:0;padding-top:0;flex-shrink:0;}
+body.no-imgs .card.dark .card-footer{border-top:none;}
+body.no-imgs .kids-grid{display:flex;flex-direction:column;}
+body.no-imgs .kid-card{flex-direction:row;align-items:center;border-right:none;}
+body.no-imgs .kid-body{display:flex;align-items:center;padding:10px 16px;flex:1;}
+body.no-imgs .kid-name{flex:1;}
+body.no-imgs .kid-en{display:none;}
+body.no-imgs .kid-price{margin-top:0;flex-shrink:0;}
+
 .cat-nav{
   display:flex;overflow-x:auto;
   padding:0 12px;gap:0;
@@ -365,7 +397,7 @@ footer strong{color:var(--gold-light);}
 }
 </style>
 </head>
-<body>
+<body class="no-imgs">
 
 <!-- HERO -->
 <header class="hero">
@@ -381,6 +413,7 @@ footer strong{color:var(--gold-light);}
 <!-- STICKY NAV -->
 <div class="sticky-wrap">
   <div class="iva-bar">
+    <button class="img-btn" id="imgBtn" onclick="toggleImgs()">Activar imágenes</button>
     <span class="iva-label">+ IVA 13%</span>
     <label class="iva-toggle">
       <input type="checkbox" id="ivaToggle" onchange="toggleIva(this)">
@@ -716,7 +749,7 @@ footer strong{color:var(--gold-light);}
 </section>
 
 <footer>
-  <p>🍳 <strong>Soda El Guácimo</strong> &nbsp;·&nbsp; Precios sin IVA &nbsp;·&nbsp; Costa Rica 🇨🇷</p>
+  <p>🍳 <strong>Soda El Guácimo</strong> &nbsp;·&nbsp; Costa Rica 🇨🇷</p>
 </footer>
 
 <script>
@@ -755,6 +788,13 @@ function show(id){
   const ids = ['casados','desayunos','arroces','gallos','adicionales','bebidas','ninos'];
   document.querySelectorAll('.cat-btn')[ids.indexOf(id)].classList.add('on');
   window.scrollTo({top:document.querySelector('.sticky-wrap').offsetTop,behavior:'smooth'});
+}
+
+function toggleImgs(){
+  const hidden = document.body.classList.toggle('no-imgs');
+  const btn = document.getElementById('imgBtn');
+  btn.textContent = hidden ? 'Activar imágenes' : 'Desactivar imágenes';
+  btn.classList.toggle('active', !hidden);
 }
 
 window.addEventListener('DOMContentLoaded', initPrices);
