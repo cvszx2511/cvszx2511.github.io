@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú · Soda El Guácimo</title>
+<meta name="description" content="Menú de Soda El Guácimo — Auténtica comida costarricense a la leña.">
+<meta property="og:title" content="Menú · Soda El Guácimo">
+<meta property="og:description" content="Auténtica comida costarricense a la leña.">
+<meta property="og:image" content="img/cover-casado.jpg">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#4A1E25;
+  --red:#D3262C;
+  --green:#2E5A3F;
+  --green-2:#3E6B4B;
+  --yellow:#F6C343;
+  --box-1:#FBE6A0;
+  --box-2:#F7CC5C;
+  --box-3:#F2B53B;
+  --ink:#2B2522;
+  --soft:#4A4440;
+  --page:#FFFFFF;
+  --table:#E9E4DD;
+  --wood-dark:#24252A;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{
+  font-family:'Open Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--ink);
+  background:var(--table);
+  padding:0 16px 48px;
+  -webkit-text-size-adjust:100%;
+}
+img{max-width:100%;display:block}
+
+/* ───────── COVER ───────── */
+.cover{
+  max-width:760px;margin:24px auto 0;
+  border-radius:22px;overflow:hidden;
+  container-type:inline-size;
+  color:#fff;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 2px,transparent 2px 7px,rgba(0,0,0,.18) 7px 8px,transparent 8px 19px),
+    linear-gradient(180deg,#2C2D33,#1E1F23);
+  box-shadow:0 10px 40px rgba(0,0,0,.25);
+}
+.cover-grid{
+  display:grid;grid-template-columns:30% 70%;
+  padding:5cqw 4cqw 0 2cqw;
+}
+.cover-word{
+  font-family:'Anton','Impact',sans-serif;
+  color:var(--yellow);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-size:33cqw;line-height:.82;
+  letter-spacing:.02em;
+  text-align:center;
+  text-shadow:-.012em 0 0 #000,0 0 .04em rgba(0,0,0,.6);
+  display:flex;align-items:center;justify-content:center;
+  user-select:none;
+}
+.cover-photos{display:grid;gap:1.1cqw;align-content:start}
+.cover-photos img{width:100%;aspect-ratio:2.75/1;object-fit:cover;border:1px solid #111}
+.cover-photos img:last-child{aspect-ratio:2.1/1}
+.cover-foot{
+  display:grid;grid-template-columns:38% 1fr;align-items:center;gap:3cqw;
+  padding:3cqw 6cqw 6cqw;
+}
+.cover-foot img{width:100%;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))}
+.cover-foot p{
+  font-family:'Roboto Condensed','Arial Narrow',sans-serif;font-weight:700;
+  font-size:clamp(1.05rem,5.6cqw,2.6rem);line-height:1.12;
+  letter-spacing:.02em;text-transform:uppercase;color:#F1F1F1;
+}
+
+/* ───────── NAV ───────── */
+.nav{
+  position:sticky;top:0;z-index:20;
+  margin:20px -16px 0;padding:10px 16px;
+  padding-top:calc(10px + env(safe-area-inset-top,0px));
+  background:rgba(233,228,221,.92);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.nav ul{
+  list-style:none;display:flex;gap:8px;overflow-x:auto;
+  max-width:760px;margin:0 auto;scrollbar-width:none;
+}
+.nav ul::-webkit-scrollbar{display:none}
+.nav a{
+  display:block;white-space:nowrap;text-decoration:none;
+  font-weight:700;font-size:.82rem;color:var(--maroon);
+  background:#fff;border-radius:100px;padding:8px 14px;
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+  transition:background .15s,color .15s;
+}
+.nav a.on,.nav a:hover{background:var(--red);color:#fff}
+
+/* ───────── PAGE ───────── */
+.page{
+  position:relative;
+  max-width:760px;margin:22px auto 0;
+  background:var(--page);
+  border-radius:22px;
+  padding:clamp(20px,4.5vw,40px);
+  box-shadow:0 6px 28px rgba(60,40,20,.12);
+  overflow:hidden;
+}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
+.t-es{
+  font-weight:800;color:var(--maroon);
+  font-size:clamp(2rem,8.5vw,3.6rem);line-height:.98;letter-spacing:-.01em;
+}
+.t-en{
+  font-weight:400;color:var(--red);
+  font-size:clamp(2rem,8.5vw,3.6rem);line-height:1;letter-spacing:-.005em;
+}
+.t-sm{font-size:clamp(1.6rem,6.6vw,2.6rem)}
+
+/* wooden sign with logo */
+.sign{
+  flex:none;position:relative;width:clamp(96px,22vw,150px);
+  margin-top:18px;padding:8px 10px 6px;
+  border:3px solid #8E5530;border-radius:5px;
+  background:
+    repeating-linear-gradient(180deg,transparent 0 31%,rgba(110,60,25,.45) 31% 33%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 3px,transparent 3px 11px),
+    linear-gradient(90deg,#E8B486,#D9996A 55%,#E6B07F);
+  box-shadow:0 4px 8px rgba(0,0,0,.25);
+}
+.sign::before,.sign::after{
+  content:'';position:absolute;top:-22px;width:4px;height:22px;
+  background:#4A2A18;border-radius:2px;
+}
+.sign::before{left:16%}.sign::after{right:16%}
+.sign img{width:78%;margin:0 auto;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+
+/* yellow box */
+.box{
+  position:relative;
+  border-radius:24px;
+  padding:clamp(16px,3.5vw,26px) clamp(16px,3.5vw,28px);
+  background:
+    radial-gradient(ellipse at 35% 30%,var(--box-1) 0%,var(--box-2) 55%,var(--box-3) 100%);
+}
+.box::after{ /* paper grain */
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.25;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .4 0 0 0 0 .1 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.box + .box{margin-top:18px}
+
+.list{list-style:none;position:relative;z-index:1}
+.list li{position:relative;padding-left:18px;margin-bottom:11px;break-inside:avoid}
+.list li:last-child{margin-bottom:0}
+.list li::before{
+  content:'';position:absolute;left:2px;top:.62em;
+  width:7px;height:7px;border-radius:50%;background:var(--red);
+}
+.es{font-weight:700;color:#2A2420;font-size:1.04rem;line-height:1.2}
+.es small{font-weight:600;font-size:.82em}
+.es .it{font-style:italic;font-weight:600;font-size:.84em}
+.ln{display:flex;align-items:baseline;gap:6px;line-height:1.25}
+.en{color:var(--soft);font-size:.98rem}
+.ln .es{font-size:1.04rem}
+.dots{flex:1;min-width:14px;border-bottom:2px dotted rgba(60,45,30,.55);transform:translateY(-4px)}
+.p{font-weight:700;color:#2A2420;font-size:1.12rem;white-space:nowrap}
+.p::before{content:'₡';margin-right:.18em;font-weight:700}
+
+/* banners */
+.ban{
+  position:relative;z-index:1;display:inline-block;
+  background:var(--green);color:#fff;font-weight:700;
+  font-size:clamp(1.05rem,3.6vw,1.4rem);
+  padding:7px 26px 7px 18px;border-radius:12px 40px 40px 12px;
+  margin-bottom:6px;
+}
+.ban em{font-style:italic;font-weight:600}
+.box > .ban:first-child{margin-left:calc(-1 * clamp(16px,3.5vw,28px));border-radius:0 40px 40px 0}
+.note{position:relative;z-index:1;font-size:.8rem;color:var(--soft);margin-bottom:14px}
+
+.tax{
+  display:block;width:fit-content;
+  margin:22px 0 0;
+  background:var(--red);color:#fff;
+  font-weight:700;font-size:.82rem;letter-spacing:.01em;
+  padding:6px 26px;border-radius:100px;
+}
+
+/* photos */
+.circle{
+  border-radius:50%;overflow:hidden;aspect-ratio:1;
+  border:6px solid var(--red);
+  box-shadow:0 4px 14px rgba(0,0,0,.18);
+}
+.circle img{width:100%;height:100%;object-fit:cover}
+.circle.o{border-color:#EE8A3C}
+
+/* two column helpers */
+.cols{display:grid;grid-template-columns:1fr;gap:18px}
+@media (min-width:700px){
+  .cols.c-side{grid-template-columns:1fr 34%;align-items:start}
+  .cols.c-2{grid-template-columns:1fr 1fr;align-items:start}
+}
+
+/* ── Desayunos ── */
+#desayunos .side{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#desayunos .side img{width:100%;aspect-ratio:1.2;object-fit:cover;border-radius:14px}
+@media (min-width:700px){
+  #desayunos .cols{grid-template-columns:1fr 34%;align-items:start}
+  #desayunos .side{grid-template-columns:1fr;gap:12px}
+  #desayunos .side img{aspect-ratio:1.1}
+}
+
+/* ── Gallos ── */
+.gallo-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.gallo-strip div{padding:6px 0 6px 6px;border-radius:0 16px 16px 0}
+.gallo-strip div:nth-child(1){background:#C8322B}
+.gallo-strip div:nth-child(2){background:#E06A2E}
+.gallo-strip div:nth-child(3){background:#7C9A4B}
+.gallo-strip div:nth-child(4){background:#2F5A3C}
+.gallo-strip img{width:100%;aspect-ratio:1.4;object-fit:cover;border-radius:0 12px 12px 0}
+@media (min-width:700px){
+  #gallos .cols{grid-template-columns:30% 1fr}
+  .gallo-strip{grid-template-columns:1fr;gap:14px}
+}
+.pill{
+  position:relative;z-index:1;
+  background:#fff;color:var(--red);font-weight:700;text-align:center;
+  font-size:clamp(1.05rem,3.6vw,1.35rem);
+  border-radius:100px;padding:6px 18px;margin-bottom:16px;
+}
+.pill em{font-style:italic}
+.big-green{
+  font-weight:800;color:var(--green-2);text-align:center;
+  font-size:clamp(3.4rem,16vw,7rem);line-height:1;letter-spacing:-.02em;
+  margin-top:10px;
+}
+#gallos .tax{background:none;color:var(--red);padding:0;margin:4px auto 0;font-size:.85rem}
+
+/* ── Casados ── */
+.casados-photo{
+  flex:1;max-width:440px;aspect-ratio:1.75;
+  border-radius:50%;overflow:hidden;border:7px solid var(--red);
+  box-shadow:0 4px 14px rgba(0,0,0,.18);
+}
+.casados-photo img{width:100%;height:100%;object-fit:cover}
+.big-red{
+  font-weight:800;color:var(--red);
+  font-size:clamp(3rem,14vw,6.4rem);line-height:.9;letter-spacing:-.02em;
+  transform:rotate(-12deg);transform-origin:left bottom;
+  margin:-4% 0 6% 2%;width:fit-content;
+  text-shadow:0 0 0 #fff,3px 3px 0 #fff,-3px -3px 0 #fff;
+}
+#casados .head{margin-bottom:0}
+#casados .ban{margin:18px 0 10px auto;display:block;width:fit-content;border-radius:40px 12px 12px 40px;padding:7px 22px}
+
+/* ── Otros / Arroces ── */
+.otros-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.otros-head .circle{width:clamp(80px,22vw,140px);flex:none}
+.otros-title{
+  font-family:'Anton','Impact',sans-serif;color:#E8402F;
+  font-size:clamp(3rem,13vw,5.6rem);line-height:1;letter-spacing:.01em;
+}
+.arroces-title{text-align:right;margin:34px 0 14px}
+#otros .cols > .circle{width:min(100%,240px);justify-self:center}
+.arroces-title .t-es{font-size:clamp(3rem,14vw,6rem);line-height:.9}
+.arroces-title .t-en{font-size:clamp(2.2rem,9vw,4rem)}
+@media (min-width:700px){
+  #otros .cols{grid-template-columns:1fr 32%;align-items:center}
+}
+
+/* ── Adicionales ── */
+.photo-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.photo-row .circle{border-width:4px}
+
+/* ── Bebidas ── */
+.extra{margin-top:16px;padding:0 4px}
+.extra .es{font-size:1rem}
+@media (min-width:700px){
+  #bebidas .cols{grid-template-columns:1.05fr 1fr}
+}
+.sub-head{margin:6px 0 12px}
+.sub-head .t-es{font-size:clamp(1.6rem,6vw,2.4rem)}
+.sub-head .t-en{font-size:clamp(1.6rem,6vw,2.4rem)}
+
+/* footer */
+footer{max-width:760px;margin:28px auto 0;text-align:center;color:var(--soft);font-size:.85rem}
+footer img{width:110px;margin:0 auto 8px}
+footer strong{color:var(--maroon)}
+
+@media (max-width:420px){
+  .es,.ln .es{font-size:.98rem}
+  .en{font-size:.92rem}
+  .p{font-size:1.04rem}
+}
+@media print{
+  .nav{display:none}
+  body{background:#fff}
+  .page{box-shadow:none;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="cover" aria-label="Soda El Guácimo">
+  <div class="cover-grid">
+    <div class="cover-word" aria-hidden="true">MENU</div>
+    <div class="cover-photos">
+      <img src="img/cover-casado.jpg" alt="Casado con carne en salsa">
+      <img src="img/cover-pinto.jpg" alt="Gallo pinto con huevo y maduro">
+      <img src="img/cover-tortilla.jpg" alt="Tortilla casera">
+      <img src="img/cover-fuego.jpg" alt="Fogón de leña">
+    </div>
+  </div>
+  <div class="cover-foot">
+    <img src="img/logo.png" alt="Soda El Guácimo">
+    <p>Auténtica<br>comida<br>costarricense<br>a la leña</p>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Secciones">
+  <ul>
+    <li><a href="#desayunos">Desayunos</a></li>
+    <li><a href="#gallos">Gallos</a></li>
+    <li><a href="#casados">Casados</a></li>
+    <li><a href="#otros">Otros</a></li>
+    <li><a href="#arroces">Arroces</a></li>
+    <li><a href="#adicionales">Adicionales</a></li>
+    <li><a href="#bebidas">Bebidas</a></li>
+    <li><a href="#ninos">Niños</a></li>
+    <li><a href="#calientes">Bebidas calientes</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- DESAYUNOS -->
+<section class="page" id="desayunos">
+  <div class="head">
+    <h2><span class="t-es" style="display:block">DESAYUNOS</span><span class="t-en">BREAKFAST</span></h2>
+    <div class="sign"><img src="img/logo.png" alt=""></div>
+  </div>
+  <div class="cols">
+    <div class="box">
+      <div class="ban">GALLO PINTO con/<em>with</em></div>
+      <p class="note">Incluye maduro y tortilla / Includes fried ripe plantains and tortilla</p>
+      <ul class="list" data-list="desayunos"></ul>
+    </div>
+    <div class="side">
+      <img src="img/cover-pinto.jpg" alt="Gallo pinto con huevo" loading="lazy">
+      <img src="img/bistec.jpg" alt="Bistec encebollado" loading="lazy">
+      <img src="img/gallo2.jpg" alt="Tortilla con natilla" loading="lazy">
+    </div>
+  </div>
+  <span class="tax">Impuestos incluidos / Taxes included</span>
+</section>
+
+<!-- GALLOS -->
+<section class="page" id="gallos">
+  <div class="cols">
+    <div>
+      <div class="sign" style="margin:18px 0 18px"><img src="img/logo.png" alt=""></div>
+      <div class="gallo-strip">
+        <div><img src="img/gallo1.jpg" alt="Gallo de torta de huevo" loading="lazy"></div>
+        <div><img src="img/gallo2.jpg" alt="Tortilla con natilla" loading="lazy"></div>
+        <div><img src="img/gallo3.jpg" alt="Gallo de queso" loading="lazy"></div>
+        <div><img src="img/gallo4.jpg" alt="Gallo de carne" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="pill">Gallos con/<em>with:</em></div>
+      <ul class="list" data-list="gallos"></ul>
+    </div>
+  </div>
+  <h2 class="big-green">GALLOS</h2>
+  <span class="tax">Impuestos incluidos / Taxes included</span>
+</section>
+
+<!-- CASADOS -->
+<section class="page" id="casados">
+  <div class="head">
+    <div class="casados-photo"><img src="img/cover-casado.jpg" alt="Casado" loading="lazy"></div>
+    <div class="sign"><img src="img/logo.png" alt=""></div>
+  </div>
+  <h2 class="big-red">CASADOS</h2>
+  <div class="box">
+    <div class="ban">Casados con/<em>with:</em></div>
+    <ul class="list" data-list="casados"></ul>
+  </div>
+  <span class="tax">Impuestos incluidos / Taxes included</span>
+</section>
+
+<!-- OTROS + ARROCES -->
+<section class="page" id="otros">
+  <div class="otros-head">
+    <div class="circle o"><img src="img/otros.jpg" alt="Aliñada" loading="lazy"></div>
+    <h2 class="otros-title">OTROS</h2>
+    <div class="sign"><img src="img/logo.png" alt=""></div>
+  </div>
+  <div class="box"><ul class="list" data-list="otros"></ul></div>
+
+  <div class="arroces-title" id="arroces">
+    <h2><span class="t-es" style="display:block">ARROCES</span><span class="t-en">RICE</span></h2>
+  </div>
+  <div class="cols">
+    <div class="box"><ul class="list" data-list="arroces"></ul></div>
+    <div class="circle"><img src="img/arroz.jpg" alt="Arroz con camarones" loading="lazy"></div>
+  </div>
+  <span class="tax">Impuestos incluidos / Taxes included</span>
+</section>
+
+<!-- ADICIONALES -->
+<section class="page" id="adicionales">
+  <div class="head">
+    <h2><span class="t-es" style="display:block">Adicionales</span><span class="t-en">Adicional</span></h2>
+    <div class="sign"><img src="img/logo.png" alt=""></div>
+  </div>
+  <div class="cols c-2">
+    <div class="box"><ul class="list" data-list="adicionales1"></ul></div>
+    <div>
+      <div class="box"><ul class="list" data-list="adicionales2"></ul></div>
+      <div class="box"><ul class="list" data-list="adicionales3"></ul></div>
+    </div>
+  </div>
+  <div class="photo-row">
+    <div class="circle o"><img src="img/bistec.jpg" alt="Bistec" loading="lazy"></div>
+    <div class="circle"><img src="img/patacones.jpg" alt="Patacones" loading="lazy"></div>
+    <div class="circle o"><img src="img/tocineta.jpg" alt="Tocineta" loading="lazy"></div>
+    <div class="circle"><img src="img/olla.jpg" alt="Olla de carne" loading="lazy"></div>
+  </div>
+  <span class="tax">Impuestos incluidos / Taxes included</span>
+</section>
+
+<!-- BEBIDAS / NIÑOS / CALIENTES -->
+<section class="page" id="bebidas">
+  <div class="head">
+    <h2><span class="t-es">BEBIDAS</span> <span class="t-en">DRINKS</span></h2>
+    <div class="sign"><img src="img/logo.png" alt=""></div>
+  </div>
+  <div class="cols">
+    <div>
+      <div class="box"><ul class="list" data-list="bebidas"></ul></div>
+      <div class="extra">
+        <div class="es">Empaques para llevar</div>
+        <div class="ln"><span class="en">Takeout containers</span><span class="dots"></span><span class="p">200</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sub-head" id="ninos">
+        <h2><span class="t-es" style="display:block">MENÚ<br>PARA NIÑOS</span><span class="t-en">KIDS MENU</span></h2>
+      </div>
+      <div class="box"><ul class="list" data-list="ninos"></ul></div>
+      <div class="box"><ul class="list" data-list="postres"></ul></div>
+      <div class="sub-head" id="calientes" style="margin-top:24px">
+        <h2><span class="t-es" style="display:block">BEBIDAS CALIENTES</span><span class="t-en">HOT DRINKS</span></h2>
+      </div>
+      <div class="box"><ul class="list" data-list="calientes"></ul></div>
+    </div>
+  </div>
+  <span class="tax">Impuestos incluidos / Taxes included</span>
+</section>
+
+</main>
+
+<footer>
+  <img src="img/logo.png" alt="Soda El Guácimo">
+  <strong>Soda El Guácimo</strong><br>
+  Auténtica comida costarricense a la leña
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   MENÚ — para cambiar un precio, edite solo el número.
+   Formato: [ 'Nombre en español', 'Nombre en inglés', precio ]
+   Deje el inglés en '' si no lleva traducción.
+   ════════════════════════════════════════════════════════════ */
+const MENU = {
+  desayunos: [
+    ['Carne en salsa', 'Meat Sauce', 3000],
+    ['Lengua en Salsa', 'Tongue Sauce', 5100],
+    ['Chuleta de cerdo', 'Pork Chop', 3000],
+    ['Bistec de res', 'Beef', 3000],
+    ['Pollo', 'Chicken', 3000],
+    ['Omelette', 'Omelette', 3000],
+    ['Huevo', 'Egg', 2450],
+    ['Queso', 'Cheese', 2450],
+    ['Jamón', 'Ham', 2450],
+    ['Salchichón', 'Salami', 2450],
+    ['Chorizo', 'Sausage', 2450],
+    ['Natilla', 'Sour Cream', 2450],
+  ],
+  gallos: [
+    ['Carne en salsa', 'Meat Sauce', 2700],
+    ['Lengua en Salsa', 'Tongue Sauce', 4500],
+    ['Pollo', 'Chicken', 2700],
+    ['Bistec', 'Beef', 2700],
+    ['Pescado', 'Fish', 2700],
+    ['Salchichón', 'Salami', 1750],
+    ['Salchichón arreglado', 'Salami', 2700],
+    ['Chorizo', 'Sausage', 1750],
+    ['Chorizo arreglado', 'Sausage', 2700],
+    ['Torta de Huevo', 'Egg', 1500],
+    ['Queso', 'Cheese', 1550],
+    ['Omelette', '', 3000],
+    ['Tortilla con natilla', 'Tortilla with Sour Cream', 2000],
+  ],
+  casados: [
+    ['Carne en salsa', 'Meat Sauce', 4000],
+    ['Lengua en Salsa', 'Tongue Sauce', 6300],
+    ['Pollo', 'Chicken', 4000],
+    ['Bistec', 'Beef', 4000],
+    ['Chuleta', 'Pork Chop', 4000],
+    ['Chorizo', 'Sausage', 4000],
+    ['Pescado', 'Fish', 4000],
+    ['Camarón', 'Shrimp', 5000],
+    ['Costilla de Cerdo', 'Rib Chop', 4400],
+  ],
+  otros: [
+    ['Maduro con natilla o queso', 'Plantain with Sour Cream or Cheese', 2650],
+    ['Aliñada Sola', 'Aliñada', 2550],
+    ['Aliñada con natilla', 'Aliñada with Sour Cream', 3750],
+    ['Picadillo', '', 1700],
+  ],
+  arroces: [
+    ['Arroz con pollo', 'Chicken', 3800],
+    ['Arroz con chorizo', 'Sausage', 3800],
+    ['Arroz con cerdo', 'Pork', 3800],
+    ['Arroz Fidel', 'Fidel Rice', 3800],
+    ['Arroz mixto', 'Mixed Rice', 6500],
+    ['Arroz con camarones', 'Shrimps', 5500],
+    ['Camarones con arroz', 'Shrimps with rice', 6500],
+  ],
+  adicionales1: [
+    ['Tocineta', 'Bacon', 950],
+    ['Carne en salsa', 'Meat Sauce', 2000],
+    ['Lengua en salsa', 'Tongue Sauce', 4000],
+    ['Bistec de res', 'Beef', 2000],
+    ['Chuleta de cerdo', 'Pork Chop', 2000],
+    ['Pollo', 'Chicken', 2000],
+    ['Costilla de cerdo', 'Pork Ribs', 2500],
+    ['Pescado', 'Fish', 2000],
+    ['Jamón', 'Ham', 950],
+    ['Queso', 'Cheese', 950],
+    ['Salchichón', 'Salami', 950],
+    ['Chorizo', 'Sausage', 950],
+    ['Natilla', 'Sour Cream', 950],
+    ['Orden de plátano', 'Fried ripe plantains', 1000],
+    ['Papas Fritas', 'French Fries', 1800],
+    ['Pinto solo', 'Gallo Pinto', 1500],
+  ],
+  adicionales2: [
+    ['Huevo con tocineta', 'Egg with bacon', 1550],
+    ['Huevo con jamón', 'Egg with ham', 1550],
+    ['Huevo ranchero', 'Ranchero egg', 1100],
+    ['Huevo solo', 'Egg', 500],
+    ['Tortilla casera', 'Tortilla', 600],
+    ['Orden de ensalada', 'Salad', 1000],
+    ['Orden de arroz', 'Rice', 1000],
+    ['Olla de carne <span class="it">Martes y Viernes</span>', 'Olla de carne <i>· Tuesday and Friday</i>', 4700],
+    ['Hamburguesa', 'Burger', 4200],
+    ['Hamburguesa con papas', 'Burger with fries', 5000],
+    ['Sandwich de carne', 'Meat Sandwich', 2700],
+    ['Sandwich de lengua', 'Tongue Sandwich', 5000],
+    ['Sandwich de pollo', 'Chicken Sandwich', 2700],
+    ['Sandwich de jamón y queso', 'Ham and cheese Sandwich', 2700],
+  ],
+  adicionales3: [
+    ['Empanada de: <small>carne, pollo, frijol, frijol con queso, queso</small>', 'Empanadas: meat, chicken, beans, beans with cheese, cheese', 1700],
+    ['Empanada arreglada', 'Empanada arreglada', 2700],
+    ['Orden de camarones', 'Shrimps', 2500],
+    ['Orden de patacones', 'Fried green plantains', 1500],
+    ['Patacones especiales', 'Special Patacones', 4500],
+    ['Chilasquilas', 'Chilasquilas', 2000],
+    ['Pasta Tony', 'Tony Pasta', 5500],
+  ],
+  bebidas: [
+    ['Fresco Natural', 'Natural drinks', 1500],
+    ['Batidos en agua', 'Water Smoothies', 1850],
+    ['Batidos en leche', 'Milk Smoothies', 2000],
+    ['Gaseosas desechables', 'Plastic Soda', 1400],
+    ['Coca Cola de vidrio', 'Glass Coke', 1000],
+    ['Tropical desechable', 'Disposable Bottle Tropical', 1300],
+    ['Fuze Tea', 'Fuze Tea', 1000],
+    ['Maxi Malta', 'Maxi Malta', 950],
+    ['Bebida Energética', 'Energy Drink', 1650],
+    ['Bebida hidratante', 'Hydrating drinks', 1500],
+    ['Agua en botella pequeña', 'Small size water bottle', 1000],
+    ['Agua en botella mediana', 'Medium size water bottle', 1500],
+    ['Agua en botella grande', 'Big size water bottle', 2000],
+    ['Aloe', 'Aloe', 1500],
+    ['Gaseosa 3 litros', '3-liter soda', 3500],
+    ['Jugo de tomate <span class="it">(con/sin chile)</span>', 'Tomato Juice', 700],
+    ['Café frío', 'Iced Coffee', 2500],
+  ],
+  ninos: [
+    ['Dedos de pollo o pescado con papas', 'Chicken or fish fingers with fries', 3500],
+    ['Spaghettis con mantequilla y queso', 'Butter and cheese spaghettis', 3500],
+    ['Salchipapas', 'Salchipapas', 3500],
+    ['Arroz con pollo', 'Rice and chicken', 3500],
+  ],
+  postres: [
+    ['Granizados', 'Granizados', 2700],
+    ['Plato de frutas con helado', 'Ice cream with fruits', 2600],
+    ['Plato de frutas', 'Fruits', 2000],
+  ],
+  calientes: [
+    ['Café negro o con leche', 'Black coffee / with milk', 1100],
+    ['Agua dulce negra o con leche', 'Agua dulce / black or milk', 1100],
+    ['Té negro o con leche', 'Black tea / with milk', 1100],
+    ['Té de Manzanilla', 'Chamomile tea', 1100],
+    ['Chocolate', 'Hot chocolate', 1100],
+  ],
+};
+
+for (const ul of document.querySelectorAll('[data-list]')) {
+  ul.innerHTML = MENU[ul.dataset.list].map(([es, en, p]) => en
+    ? `<li><div class="es">${es}</div><div class="ln"><span class="en">${en}</span><span class="dots"></span><span class="p">${p}</span></div></li>`
+    : `<li><div class="ln"><span class="es">${es}</span><span class="dots"></span><span class="p">${p}</span></div></li>`
+  ).join('');
+}
+
+/* resaltar la sección visible en la barra */
+const links = [...document.querySelectorAll('.nav a')];
+const targets = links.map(a => document.querySelector(a.hash));
+function markActive() {
+  let cur = 0;
+  targets.forEach((t, i) => { if (t.getBoundingClientRect().top < 140) cur = i; });
+  links.forEach((a, i) => a.classList.toggle('on', i === cur));
+  const on = links[cur];
+  const ul = on.closest('ul');
+  ul.scrollTo({ left: on.getBoundingClientRect().left - ul.getBoundingClientRect().left + ul.scrollLeft - 16, behavior: 'smooth' });
+}
+let raf; addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(markActive); }, { passive: true });
+markActive();
+</script>
+</body>
+</html>
