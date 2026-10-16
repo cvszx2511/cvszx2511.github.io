@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Menú · Soda El Guácimo</title>
 <meta name="description" content="Menú de Soda El Guácimo — Auténtica comida costarricense a la leña.">
 <meta property="og:title" content="Menú · Soda El Guácimo">
@@ -11,304 +11,345 @@
 <link rel="icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@600;700&family=Roboto+Condensed:wght@700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --maroon:#4A1E25;
-  --red:#D3262C;
-  --green:#2E5A3F;
-  --green-2:#3E6B4B;
-  --yellow:#F6C343;
-  --box-1:#FBE6A0;
-  --box-2:#F7CC5C;
-  --box-3:#F2B53B;
-  --ink:#2B2522;
-  --soft:#4A4440;
-  --page:#FFFFFF;
-  --table:#E9E4DD;
-  --wood-dark:#24252A;
+  --maroon:#4A1C24;
+  --red:#D7252D;
+  --red-otros:#E43B2C;
+  --green:#2D5A3D;
+  --green-gallos:#2F5D43;
+  --ink:#231D1A;
+  --soft:#3B3431;
+  --table:#E6E1DA;
   color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
+html{scroll-behavior:smooth;scroll-padding-top:60px}
 body{
-  font-family:'Open Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  color:var(--ink);
-  background:var(--table);
+  font-family:'Source Sans 3','Myriad Pro',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--ink);background:var(--table);
   padding:0 16px 48px;
   -webkit-text-size-adjust:100%;
 }
 img{max-width:100%;display:block}
 
-/* ───────── COVER ───────── */
-.cover{
-  max-width:760px;margin:24px auto 0;
-  border-radius:22px;overflow:hidden;
+/* ════════ HOJA (cada página del menú) ════════ */
+.sheet{
+  position:relative;
+  max-width:760px;margin:22px auto 0;
+  background:#fff;border-radius:22px;overflow:hidden;
   container-type:inline-size;
+  box-shadow:0 6px 28px rgba(60,40,20,.13);
+  font-size:clamp(13.5px,2.4cqw,18px);
+}
+
+/* títulos */
+.t-es{display:block;font-weight:800;color:var(--maroon);line-height:.95;letter-spacing:-.01em}
+.t-en{display:block;font-weight:400;color:var(--red);line-height:1}
+
+/* letrero de madera con logo */
+.sign{
+  position:absolute;z-index:3;
+  width:20cqw;min-width:84px;padding:1.2cqw 1.4cqw .9cqw;
+  border:.45cqw solid #8B4F2B;border-radius:.7cqw;
+  background:
+    linear-gradient(180deg,transparent 32%,rgba(120,62,25,.55) 32% 34%,transparent 34% 65%,rgba(120,62,25,.55) 65% 67%,transparent 67%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 3px,transparent 3px 10px,rgba(140,80,40,.08) 10px 12px,transparent 12px 21px),
+    linear-gradient(180deg,#EDBE92,#DFA171 50%,#E8B484);
+  box-shadow:0 .5cqw 1cqw rgba(0,0,0,.28);
+}
+.sign::before,.sign::after{
+  content:'';position:absolute;bottom:100%;width:.55cqw;min-width:2px;height:3.4cqw;
+  background:#3F2416;border-radius:2px 2px 0 0;
+}
+.sign::before{left:13%}.sign::after{right:13%}
+.sign img{width:62%;margin:0 auto;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+
+/* animalitos */
+.critter{position:absolute;z-index:4;pointer-events:none}
+.critter img{width:100%}
+.critter span{
+  position:absolute;white-space:nowrap;
+  font-size:max(8px,1.45cqw);font-weight:600;letter-spacing:.01em;
+}
+
+/* caja amarilla */
+.box{
+  position:relative;
+  border-radius:3.2cqw;
+  padding:3.2cqw 3cqw 3.2cqw 3.6cqw;
+  background:radial-gradient(ellipse 90% 70% at 40% 35%,#FCE8A4 0%,#F8D266 45%,#F3B83E 100%);
+}
+.box::after{
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .4 0 0 0 0 .1 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* lista de platos */
+.list{list-style:none;position:relative;z-index:1}
+.list li{position:relative;padding-left:1.15em;margin-bottom:.42em}
+.list li:last-child{margin-bottom:0}
+.list li::before{
+  content:'';position:absolute;left:.15em;top:.5em;
+  width:.36em;height:.36em;border-radius:50%;background:var(--red);
+}
+.es{font-weight:700;color:var(--ink);font-size:1.06em;line-height:1.12}
+.es small{font-weight:700;font-size:.8em}
+.es .it{font-style:italic;font-weight:600;font-size:.82em;display:block}
+.ln{display:flex;align-items:baseline;gap:.3em;line-height:1.12}
+.en{color:var(--soft);font-size:1.02em}
+.en i{font-size:.86em}
+.ln .es{font-size:1.06em}
+.dots{flex:1;min-width:.8em;border-bottom:.14em dotted rgba(50,38,28,.6);transform:translateY(-.25em)}
+.p{font-weight:700;color:var(--ink);font-size:1.12em;white-space:nowrap}
+.p::before{content:'₡';margin-right:.15em}
+
+/* banner verde */
+.ban{
+  position:relative;z-index:2;display:inline-block;
+  background:var(--green);color:#fff;font-weight:700;
+  font-size:max(15px,3.3cqw);line-height:1.15;
+  padding:.35em 1.4em .35em .9em;border-radius:.5em 2em 2em .5em;
+  box-shadow:0 2px 4px rgba(0,0,0,.15);
+}
+.ban em{font-style:italic;font-weight:600}
+
+/* franja de impuestos */
+.tax{
+  position:relative;z-index:5;display:block;width:fit-content;
+  background:var(--red);color:#fff;text-align:center;
+  font-weight:700;font-size:max(11px,1.75cqw);letter-spacing:.01em;
+  padding:.45em 2.2em;border-radius:2em;
+}
+.tax.l{border-radius:0 2em 2em 0;padding-left:5cqw}
+
+/* fotos */
+.circle{border-radius:50%;overflow:hidden;aspect-ratio:1;border:1cqw solid var(--red);background:#fff}
+.circle img{width:100%;height:100%;object-fit:cover}
+
+/* ════════ PORTADA ════════ */
+.cover{
   color:#fff;
   background:
-    repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 2px,transparent 2px 7px,rgba(0,0,0,.18) 7px 8px,transparent 8px 19px),
-    linear-gradient(180deg,#2C2D33,#1E1F23);
-  box-shadow:0 10px 40px rgba(0,0,0,.25);
+    repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 2px,transparent 2px 7px,rgba(0,0,0,.2) 7px 8px,transparent 8px 19px),
+    linear-gradient(180deg,#2C2D32,#1D1E22);
+  box-shadow:0 10px 40px rgba(0,0,0,.28);
 }
-.cover-grid{
-  display:grid;grid-template-columns:30% 70%;
-  padding:5cqw 4cqw 0 2cqw;
-}
+.cover-grid{display:grid;grid-template-columns:37cqw 63cqw;padding-top:7cqw}
 .cover-word{
-  font-family:'Anton','Impact',sans-serif;
-  color:var(--yellow);
+  position:relative;z-index:2;
+  font-family:'Anton','Impact',sans-serif;color:#F7C548;
   writing-mode:vertical-rl;transform:rotate(180deg);
-  font-size:33cqw;line-height:.82;
-  letter-spacing:.02em;
-  text-align:center;
-  text-shadow:-.012em 0 0 #000,0 0 .04em rgba(0,0,0,.6);
-  display:flex;align-items:center;justify-content:center;
-  user-select:none;
+  font-size:46cqw;line-height:.74;letter-spacing:.005em;
+  -webkit-text-stroke:.012em #111;paint-order:stroke fill;
+  margin-left:4cqw;margin-right:-5cqw;
+  text-align:center;user-select:none;
 }
-.cover-photos{display:grid;gap:1.1cqw;align-content:start}
-.cover-photos img{width:100%;aspect-ratio:2.75/1;object-fit:cover;border:1px solid #111}
-.cover-photos img:last-child{aspect-ratio:2.1/1}
-.cover-foot{
-  display:grid;grid-template-columns:38% 1fr;align-items:center;gap:3cqw;
-  padding:3cqw 6cqw 6cqw;
-}
+.cover-photos{display:flex;flex-direction:column;gap:.9cqw;background:#111;padding:.9cqw 0 .9cqw .9cqw}
+.cover-photos img{width:100%;object-fit:cover}
+.cover-photos img:nth-child(1){height:21cqw}
+.cover-photos img:nth-child(2){height:26cqw}
+.cover-photos img:nth-child(3){height:21cqw}
+.cover-photos img:nth-child(4){height:27cqw}
+.cover-foot{display:grid;grid-template-columns:36cqw 1fr;align-items:center;gap:5cqw;padding:7cqw 6cqw 8cqw 9cqw}
 .cover-foot img{width:100%;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))}
 .cover-foot p{
   font-family:'Roboto Condensed','Arial Narrow',sans-serif;font-weight:700;
-  font-size:clamp(1.05rem,5.6cqw,2.6rem);line-height:1.12;
-  letter-spacing:.02em;text-transform:uppercase;color:#F1F1F1;
+  font-size:5.6cqw;line-height:1.13;letter-spacing:.02em;text-transform:uppercase;color:#EDEDED;
 }
 
-/* ───────── NAV ───────── */
+/* ════════ NAVEGACIÓN ════════ */
 .nav{
   position:sticky;top:0;z-index:20;
-  margin:20px -16px 0;padding:10px 16px;
-  padding-top:calc(10px + env(safe-area-inset-top,0px));
-  background:rgba(233,228,221,.92);
+  margin:18px -16px 0;padding:9px 16px;
+  padding-top:calc(9px + env(safe-area-inset-top,0px));
+  background:rgba(230,225,218,.92);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
-.nav ul{
-  list-style:none;display:flex;gap:8px;overflow-x:auto;
-  max-width:760px;margin:0 auto;scrollbar-width:none;
-}
+.nav ul{list-style:none;display:flex;gap:7px;overflow-x:auto;max-width:760px;margin:0 auto;scrollbar-width:none}
 .nav ul::-webkit-scrollbar{display:none}
 .nav a{
   display:block;white-space:nowrap;text-decoration:none;
-  font-weight:700;font-size:.82rem;color:var(--maroon);
-  background:#fff;border-radius:100px;padding:8px 14px;
-  box-shadow:0 1px 3px rgba(0,0,0,.08);
-  transition:background .15s,color .15s;
+  font-weight:700;font-size:.9rem;color:var(--maroon);
+  background:#fff;border-radius:100px;padding:7px 14px;
+  box-shadow:0 1px 3px rgba(0,0,0,.08);transition:background .15s,color .15s;
 }
 .nav a.on,.nav a:hover{background:var(--red);color:#fff}
 
-/* ───────── PAGE ───────── */
-.page{
-  position:relative;
-  max-width:760px;margin:22px auto 0;
-  background:var(--page);
-  border-radius:22px;
-  padding:clamp(20px,4.5vw,40px);
-  box-shadow:0 6px 28px rgba(60,40,20,.12);
-  overflow:hidden;
-}
-.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
-.t-es{
-  font-weight:800;color:var(--maroon);
-  font-size:clamp(2rem,8.5vw,3.6rem);line-height:.98;letter-spacing:-.01em;
-}
-.t-en{
-  font-weight:400;color:var(--red);
-  font-size:clamp(2rem,8.5vw,3.6rem);line-height:1;letter-spacing:-.005em;
-}
-.t-sm{font-size:clamp(1.6rem,6.6vw,2.6rem)}
+/* ════════ DESAYUNOS ════════ */
+.pg-des .photo{position:absolute;top:0;right:0;bottom:0;width:37cqw}
+.pg-des .photo img{width:100%;height:100%;object-fit:cover}
+.pg-des .sign{top:4.5cqw;right:5cqw}
+.pg-des .main{width:63cqw;padding:5cqw 0 0 4.5cqw}
+.pg-des h2{font-size:9.4cqw;margin-bottom:2.6cqw}
+.pg-des .box{border-radius:3.2cqw 0 0 3.2cqw;padding:2.4cqw 3cqw 3cqw 4cqw}
+.pg-des .ban{margin-left:-3.2cqw;border-radius:.5em 2em 2em 0}
+.pg-des .note{position:relative;z-index:1;font-size:max(10px,1.55cqw);color:var(--soft);margin:.5em 0 1.1em}
+.pg-des .tax{margin:2.6cqw 0 3.6cqw 9cqw;width:76cqw}
+.pg-des .critter{top:20.5cqw;right:24cqw;width:8cqw}
+.pg-des .critter span{left:-3cqw;top:6.5cqw;transform:rotate(38deg);transform-origin:left top;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.7)}
 
-/* wooden sign with logo */
-.sign{
-  flex:none;position:relative;width:clamp(96px,22vw,150px);
-  margin-top:18px;padding:8px 10px 6px;
-  border:3px solid #8E5530;border-radius:5px;
-  background:
-    repeating-linear-gradient(180deg,transparent 0 31%,rgba(110,60,25,.45) 31% 33%),
-    repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 3px,transparent 3px 11px),
-    linear-gradient(90deg,#E8B486,#D9996A 55%,#E6B07F);
-  box-shadow:0 4px 8px rgba(0,0,0,.25);
+/* ════════ GALLOS ════════ */
+.pg-gal .grid{display:grid;grid-template-columns:29cqw 1fr;gap:3cqw;padding:5cqw 4.5cqw 0 0}
+.pg-gal .sign{position:relative;margin:2.5cqw 0 0 7cqw}
+.pg-gal .critter{top:14cqw;left:23cqw;width:11cqw}
+.pg-gal .critter span{color:#5B2A7A;left:-3cqw;top:10cqw;transform:rotate(18deg)}
+.pg-gal .bands{margin-top:9cqw}
+.pg-gal .band{padding:1.3cqw 1.3cqw 1.3cqw 0;border-radius:0 3cqw 3cqw 0;margin-bottom:.4cqw}
+.pg-gal .band img{width:100%;aspect-ratio:1.55;object-fit:cover;border-radius:0 2.4cqw 2.4cqw 0}
+.pg-gal .band:nth-child(1){background:#C73129}
+.pg-gal .band:nth-child(2){background:#D9502B}
+.pg-gal .band:nth-child(3){background:#7E9548}
+.pg-gal .band:nth-child(4){background:#2E5A3B}
+.pg-gal .box{border-radius:3.2cqw 3.2cqw 3.2cqw 0;padding:2.8cqw 3cqw 3cqw 3.4cqw}
+.pg-gal .pill{
+  position:relative;z-index:1;background:#fff;color:var(--red);font-weight:700;text-align:center;
+  font-size:max(15px,3.3cqw);border-radius:2em;padding:.25em 1em;margin-bottom:.8em;
 }
-.sign::before,.sign::after{
-  content:'';position:absolute;top:-22px;width:4px;height:22px;
-  background:#4A2A18;border-radius:2px;
+.pg-gal .pill em{font-style:italic}
+.pg-gal .gallos-word{position:relative;margin-top:-1px}
+.pg-gal .gallos-word::before{ /* la caja amarilla "abraza" el título como en el impreso */
+  content:'';position:absolute;right:4.5cqw;top:0;width:12cqw;height:10cqw;
+  background:#F3B83E;border-radius:0 0 3.2cqw 3.2cqw;
 }
-.sign::before{left:16%}.sign::after{right:16%}
-.sign img{width:78%;margin:0 auto;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+.pg-gal h2{
+  position:relative;text-align:center;
+  font-weight:800;color:var(--green-gallos);
+  font-size:17.5cqw;line-height:1;letter-spacing:-.015em;
+  padding:1cqw 0 0 18cqw;
+  text-shadow:.6cqw 0 0 #fff,-.6cqw 0 0 #fff,0 .6cqw 0 #fff,0 -.6cqw 0 #fff;
+}
+.pg-gal .tax-txt{text-align:center;color:var(--red);font-weight:700;font-size:max(11px,1.8cqw);padding:0 0 3.5cqw 18cqw}
 
-/* yellow box */
-.box{
-  position:relative;
-  border-radius:24px;
-  padding:clamp(16px,3.5vw,26px) clamp(16px,3.5vw,28px);
-  background:
-    radial-gradient(ellipse at 35% 30%,var(--box-1) 0%,var(--box-2) 55%,var(--box-3) 100%);
+/* ════════ CASADOS ════════ */
+.pg-cas .photo{
+  position:absolute;z-index:2;top:0;left:0;width:60cqw;height:34cqw;overflow:hidden;
+  border-bottom-right-radius:100% 100%;
+  border-right:1.1cqw solid var(--red);border-bottom:1.1cqw solid var(--red);
 }
-.box::after{ /* paper grain */
-  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.25;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .4 0 0 0 0 .1 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+.pg-cas .photo img{width:100%;height:100%;object-fit:cover;object-position:30% 50%}
+.pg-cas .sign{top:5cqw;right:7cqw}
+.pg-cas .critter{top:21cqw;right:9cqw;width:10cqw}
+.pg-cas h2{
+  position:absolute;z-index:3;left:5cqw;top:45cqw;
+  font-weight:800;color:var(--red);font-size:16cqw;line-height:.8;letter-spacing:-.01em;
+  transform:rotate(-29deg);transform-origin:left bottom;
 }
-.box + .box{margin-top:18px}
+.pg-cas .box{margin:19cqw 9cqw 0 6.7cqw;padding:43cqw 4cqw 6cqw 6cqw;border-radius:0 3.2cqw 3.2cqw 3.2cqw}
+.pg-cas .ban{position:absolute;top:30cqw;right:-9cqw;left:44cqw;border-radius:2em 0 0 2em;padding-left:1.4em}
+.pg-cas .tax{margin:-3.4cqw 0 4cqw;padding-left:9cqw;padding-right:3em}
 
-.list{list-style:none;position:relative;z-index:1}
-.list li{position:relative;padding-left:18px;margin-bottom:11px;break-inside:avoid}
-.list li:last-child{margin-bottom:0}
-.list li::before{
-  content:'';position:absolute;left:2px;top:.62em;
-  width:7px;height:7px;border-radius:50%;background:var(--red);
-}
-.es{font-weight:700;color:#2A2420;font-size:1.04rem;line-height:1.2}
-.es small{font-weight:600;font-size:.82em}
-.es .it{font-style:italic;font-weight:600;font-size:.84em}
-.ln{display:flex;align-items:baseline;gap:6px;line-height:1.25}
-.en{color:var(--soft);font-size:.98rem}
-.ln .es{font-size:1.04rem}
-.dots{flex:1;min-width:14px;border-bottom:2px dotted rgba(60,45,30,.55);transform:translateY(-4px)}
-.p{font-weight:700;color:#2A2420;font-size:1.12rem;white-space:nowrap}
-.p::before{content:'₡';margin-right:.18em;font-weight:700}
+/* ════════ OTROS / ARROCES ════════ */
+.pg-otr .head{display:grid;grid-template-columns:27cqw 1fr;align-items:center;gap:2cqw;padding-top:5.5cqw;height:24.5cqw}
+.pg-otr .head .ph{height:19cqw;border-radius:0 4cqw 4cqw 0;overflow:hidden}
+.pg-otr .head .ph img{width:100%;height:100%;object-fit:cover}
+.pg-otr h2.otros{font-family:'Oswald','Roboto Condensed',sans-serif;font-weight:700;color:var(--red-otros);font-size:12.5cqw;line-height:1;letter-spacing:-.01em}
+.pg-otr .sign{top:2cqw;right:13cqw;width:18cqw}
+.pg-otr .critter{top:16cqw;right:4.5cqw;width:11cqw}
+.pg-otr .critter span{color:#2F6E66;left:-1cqw;top:5cqw;transform:rotate(16deg)}
+.pg-otr .box.b1{margin:0 16cqw 0 7.5cqw;padding:2.6cqw 3.4cqw 3.4cqw 5.6cqw}
+.pg-otr .arr-title{text-align:right;padding:2cqw 5cqw 0 0;position:relative;z-index:2}
+.pg-otr .arr-title .t-es{font-size:16.5cqw;line-height:.92}
+.pg-otr .arr-title .t-en{font-size:10.5cqw;margin-top:-.5cqw}
+.pg-otr .box.b2{margin:-11cqw 0 0 8cqw;width:62cqw;padding:3cqw 3.4cqw 4cqw 5.6cqw;border-radius:3.2cqw 3.2cqw 3.2cqw 0}
+.pg-otr .rice-ph{position:absolute;right:-5cqw;bottom:9cqw;width:37cqw;z-index:1}
+.pg-otr .tax{margin:-2cqw 0 3.5cqw}
 
-/* banners */
-.ban{
-  position:relative;z-index:1;display:inline-block;
-  background:var(--green);color:#fff;font-weight:700;
-  font-size:clamp(1.05rem,3.6vw,1.4rem);
-  padding:7px 26px 7px 18px;border-radius:12px 40px 40px 12px;
-  margin-bottom:6px;
-}
-.ban em{font-style:italic;font-weight:600}
-.box > .ban:first-child{margin-left:calc(-1 * clamp(16px,3.5vw,28px));border-radius:0 40px 40px 0}
-.note{position:relative;z-index:1;font-size:.8rem;color:var(--soft);margin-bottom:14px}
-
-.tax{
-  display:block;width:fit-content;
-  margin:22px 0 0;
-  background:var(--red);color:#fff;
-  font-weight:700;font-size:.82rem;letter-spacing:.01em;
-  padding:6px 26px;border-radius:100px;
-}
-
-/* photos */
-.circle{
-  border-radius:50%;overflow:hidden;aspect-ratio:1;
-  border:6px solid var(--red);
-  box-shadow:0 4px 14px rgba(0,0,0,.18);
-}
-.circle img{width:100%;height:100%;object-fit:cover}
-.circle.o{border-color:#EE8A3C}
-
-/* two column helpers */
-.cols{display:grid;grid-template-columns:1fr;gap:18px}
-@media (min-width:700px){
-  .cols.c-side{grid-template-columns:1fr 34%;align-items:start}
-  .cols.c-2{grid-template-columns:1fr 1fr;align-items:start}
+/* ════════ ADICIONALES (1) ════════ */
+.pg-ad1 h2{padding:4cqw 0 0 3cqw;font-size:9.6cqw}
+.pg-ad1 .sign{top:4cqw;right:12cqw;width:22cqw}
+.pg-ad1 .critter{top:16cqw;right:4cqw;width:9cqw}
+.pg-ad1 .critter span{color:#C2475A;left:4cqw;top:9cqw;transform:rotate(-58deg);transform-origin:left top}
+.pg-ad1 .grid{display:grid;grid-template-columns:61cqw 1fr;margin-top:3cqw;padding-bottom:4cqw}
+.pg-ad1 .box{margin-left:3cqw;padding:3cqw 3cqw 3.4cqw 4cqw}
+.pg-ad1 .circles{position:relative;padding-top:6cqw}
+.pg-ad1 .circles .circle{width:37cqw;margin:0 0 -3.5cqw 2cqw;position:relative}
+.pg-ad1 .circles .circle:nth-child(1){border-color:#EF8B3F;z-index:3}
+.pg-ad1 .circles .circle:nth-child(2){border-color:#E15A35;z-index:2}
+.pg-ad1 .circles .circle:nth-child(3){border-color:#8E2E2C;z-index:1}
+.pg-ad1 .vtax{
+  position:absolute;left:-.4cqw;bottom:0;z-index:4;
+  writing-mode:vertical-rl;color:var(--red);font-weight:600;font-size:max(10px,1.7cqw);
 }
 
-/* ── Desayunos ── */
-#desayunos .side{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-#desayunos .side img{width:100%;aspect-ratio:1.2;object-fit:cover;border-radius:14px}
-@media (min-width:700px){
-  #desayunos .cols{grid-template-columns:1fr 34%;align-items:start}
-  #desayunos .side{grid-template-columns:1fr;gap:12px}
-  #desayunos .side img{aspect-ratio:1.1}
-}
+/* ════════ ADICIONALES (2) ════════ */
+.pg-ad2,.pg-beb{font-size:clamp(13.5px,2.2cqw,17px)}
+.pg-ad2 .sign{position:relative;margin:4cqw 0 0 9cqw;width:22cqw}
+.pg-ad2 .critter{top:19cqw;left:7cqw;width:11cqw}
+.pg-ad2 .critter span{color:#333;left:-4cqw;top:12cqw;transform:rotate(-30deg);transform-origin:left top}
+.pg-ad2 .top{display:flex;align-items:flex-start}
+.pg-ad2 h2{padding:4.5cqw 0 0 5cqw;font-size:9.4cqw}
+.pg-ad2 .grid{display:grid;grid-template-columns:45cqw 43cqw;gap:2cqw;padding-left:6.5cqw;margin-top:3cqw;align-items:start}
+.pg-ad2 .box.left{margin-top:3cqw;padding:3.2cqw 2.6cqw 3.4cqw 3.6cqw;margin-bottom:4cqw}
+.pg-ad2 .box.right{padding:3.2cqw 2.6cqw 3.4cqw 3.6cqw}
+.pg-ad2 .tax{margin:2.2cqw -3.5cqw 0 0;width:calc(100% + 3.5cqw);border-radius:2em 0 0 2em}
+.pg-ad2 .olla{width:50cqw;margin:2cqw -10cqw -8cqw 3cqw}
 
-/* ── Gallos ── */
-.gallo-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.gallo-strip div{padding:6px 0 6px 6px;border-radius:0 16px 16px 0}
-.gallo-strip div:nth-child(1){background:#C8322B}
-.gallo-strip div:nth-child(2){background:#E06A2E}
-.gallo-strip div:nth-child(3){background:#7C9A4B}
-.gallo-strip div:nth-child(4){background:#2F5A3C}
-.gallo-strip img{width:100%;aspect-ratio:1.4;object-fit:cover;border-radius:0 12px 12px 0}
-@media (min-width:700px){
-  #gallos .cols{grid-template-columns:30% 1fr}
-  .gallo-strip{grid-template-columns:1fr;gap:14px}
-}
-.pill{
-  position:relative;z-index:1;
-  background:#fff;color:var(--red);font-weight:700;text-align:center;
-  font-size:clamp(1.05rem,3.6vw,1.35rem);
-  border-radius:100px;padding:6px 18px;margin-bottom:16px;
-}
-.pill em{font-style:italic}
-.big-green{
-  font-weight:800;color:var(--green-2);text-align:center;
-  font-size:clamp(3.4rem,16vw,7rem);line-height:1;letter-spacing:-.02em;
-  margin-top:10px;
-}
-#gallos .tax{background:none;color:var(--red);padding:0;margin:4px auto 0;font-size:.85rem}
+/* ════════ BEBIDAS ════════ */
+.pg-beb .grid{display:grid;grid-template-columns:47cqw 1fr;gap:3cqw}
+.pg-beb .left{padding:3.5cqw 0 0 3cqw;display:flex;flex-direction:column}
+.pg-beb h2.bebidas{font-size:8.6cqw;white-space:nowrap;margin-bottom:1.5cqw}
+.pg-beb h2.bebidas .t-es,.pg-beb h2.bebidas .t-en{display:inline}
+.pg-beb .extra{padding:2.4cqw 0 0 1.6cqw}
+.pg-beb .extra .es{font-size:1em}
+.pg-beb .left .tax{margin:auto 0 0 -3cqw;width:calc(100% + 3cqw);padding-left:6cqw}
+.pg-beb .right{position:relative;padding:35cqw 5cqw 4cqw 0}
+.pg-beb .sign{top:3cqw;right:9cqw;width:22cqw}
+.pg-beb .critter{top:14cqw;right:1cqw;width:9cqw}
+.pg-beb .critter span{color:#333;left:2cqw;top:7cqw;transform:rotate(18deg)}
+.pg-beb .kids{position:absolute;top:16cqw;left:0}
+.pg-beb .kids .t-es{font-size:5.6cqw}
+.pg-beb .kids .t-en{font-size:7.2cqw}
+.pg-beb .right .box{padding:2.6cqw 2.6cqw 2.8cqw 3.4cqw}
+.pg-beb .right .box + .box{margin-top:1.6cqw}
+.pg-beb .hot{margin:2.6cqw 0 1.4cqw}
+.pg-beb .hot .t-es{font-size:4.4cqw;white-space:nowrap}
+.pg-beb .hot .t-en{font-size:7.8cqw}
+.pg-beb .mobile-tax{display:none}
 
-/* ── Casados ── */
-.casados-photo{
-  flex:1;max-width:440px;aspect-ratio:1.75;
-  border-radius:50%;overflow:hidden;border:7px solid var(--red);
-  box-shadow:0 4px 14px rgba(0,0,0,.18);
-}
-.casados-photo img{width:100%;height:100%;object-fit:cover}
-.big-red{
-  font-weight:800;color:var(--red);
-  font-size:clamp(3rem,14vw,6.4rem);line-height:.9;letter-spacing:-.02em;
-  transform:rotate(-12deg);transform-origin:left bottom;
-  margin:-4% 0 6% 2%;width:fit-content;
-  text-shadow:0 0 0 #fff,3px 3px 0 #fff,-3px -3px 0 #fff;
-}
-#casados .head{margin-bottom:0}
-#casados .ban{margin:18px 0 10px auto;display:block;width:fit-content;border-radius:40px 12px 12px 40px;padding:7px 22px}
-
-/* ── Otros / Arroces ── */
-.otros-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
-.otros-head .circle{width:clamp(80px,22vw,140px);flex:none}
-.otros-title{
-  font-family:'Anton','Impact',sans-serif;color:#E8402F;
-  font-size:clamp(3rem,13vw,5.6rem);line-height:1;letter-spacing:.01em;
-}
-.arroces-title{text-align:right;margin:34px 0 14px}
-#otros .cols > .circle{width:min(100%,240px);justify-self:center}
-.arroces-title .t-es{font-size:clamp(3rem,14vw,6rem);line-height:.9}
-.arroces-title .t-en{font-size:clamp(2.2rem,9vw,4rem)}
-@media (min-width:700px){
-  #otros .cols{grid-template-columns:1fr 32%;align-items:center}
-}
-
-/* ── Adicionales ── */
-.photo-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
-.photo-row .circle{border-width:4px}
-
-/* ── Bebidas ── */
-.extra{margin-top:16px;padding:0 4px}
-.extra .es{font-size:1rem}
-@media (min-width:700px){
-  #bebidas .cols{grid-template-columns:1.05fr 1fr}
-}
-.sub-head{margin:6px 0 12px}
-.sub-head .t-es{font-size:clamp(1.6rem,6vw,2.4rem)}
-.sub-head .t-en{font-size:clamp(1.6rem,6vw,2.4rem)}
-
-/* footer */
-footer{max-width:760px;margin:28px auto 0;text-align:center;color:var(--soft);font-size:.85rem}
+footer{max-width:760px;margin:28px auto 0;text-align:center;color:var(--soft);font-size:.9rem}
 footer img{width:110px;margin:0 auto 8px}
 footer strong{color:var(--maroon)}
 
-@media (max-width:420px){
-  .es,.ln .es{font-size:.98rem}
-  .en{font-size:.92rem}
-  .p{font-size:1.04rem}
+/* ════════ CELULAR: las páginas con dos columnas de texto se apilan ════════ */
+@container (max-width:560px){
+  .pg-des .main{width:68cqw}
+  .pg-des .photo{width:32cqw}
+  .pg-des .sign{right:3cqw;width:24cqw}
+  .pg-des .tax{width:auto;margin-left:4.5cqw;margin-right:4.5cqw}
+  .pg-ad1 .grid{grid-template-columns:68cqw 1fr}
+  .pg-ad1 .circles .circle{width:34cqw}
+  .pg-ad2 .grid{grid-template-columns:1fr;padding:0 5cqw;gap:5cqw}
+  .pg-ad2 .box.left{margin-bottom:0}
+  .pg-ad2 .right{display:grid;grid-template-columns:1fr}
+  .pg-ad2 .tax{margin-right:-5cqw;width:calc(100% + 5cqw)}
+  .pg-ad2 .olla{width:56cqw;justify-self:end;margin:3cqw -8cqw -10cqw 0}
+  .pg-beb .grid{grid-template-columns:1fr;gap:0}
+  .pg-beb .left{padding:5cqw 5cqw 0 5cqw}
+  .pg-beb .left .tax{display:none}
+  .pg-beb .right{padding:38cqw 5cqw 0 5cqw}
+  .pg-beb .kids{top:8cqw;left:5cqw}
+  .pg-beb .kids .t-es{font-size:8cqw}
+  .pg-beb .kids .t-en{font-size:10cqw}
+  .pg-beb .sign{top:5cqw}
+  .pg-beb .critter{top:22cqw}
+  .pg-beb .hot .t-es{font-size:7.6cqw}
+  .pg-beb .hot .t-en{font-size:10cqw}
+  .pg-beb .mobile-tax{display:block;margin:4cqw 0 4cqw -5cqw}
+  .pg-otr .box.b1{margin-right:7.5cqw}
 }
 @media print{
   .nav{display:none}
   body{background:#fff}
-  .page{box-shadow:none;break-inside:avoid}
+  .sheet{box-shadow:none;break-inside:avoid}
 }
 </style>
 </head>
 <body>
 
-<header class="cover" aria-label="Soda El Guácimo">
+<!-- ═══════════ PORTADA ═══════════ -->
+<header class="sheet cover" aria-label="Soda El Guácimo">
   <div class="cover-grid">
     <div class="cover-word" aria-hidden="true">MENU</div>
     <div class="cover-photos">
@@ -340,37 +381,33 @@ footer strong{color:var(--maroon)}
 
 <main>
 
-<!-- DESAYUNOS -->
-<section class="page" id="desayunos">
-  <div class="head">
-    <h2><span class="t-es" style="display:block">DESAYUNOS</span><span class="t-en">BREAKFAST</span></h2>
-    <div class="sign"><img src="img/logo.png" alt=""></div>
-  </div>
-  <div class="cols">
+<!-- ═══════════ DESAYUNOS ═══════════ -->
+<section class="sheet pg-des" id="desayunos">
+  <div class="photo"><img src="img/desayuno.jpg" alt="Carne en salsa" loading="lazy"></div>
+  <div class="sign"><img src="img/logo.png" alt=""></div>
+  <div class="critter"><img src="img/av-morpho.png" alt=""><span>Mariposa Morpho</span></div>
+  <div class="main">
+    <h2><span class="t-es">DESAYUNOS</span><span class="t-en">BREAKFAST</span></h2>
     <div class="box">
       <div class="ban">GALLO PINTO con/<em>with</em></div>
       <p class="note">Incluye maduro y tortilla / Includes fried ripe plantains and tortilla</p>
       <ul class="list" data-list="desayunos"></ul>
     </div>
-    <div class="side">
-      <img src="img/cover-pinto.jpg" alt="Gallo pinto con huevo" loading="lazy">
-      <img src="img/bistec.jpg" alt="Bistec encebollado" loading="lazy">
-      <img src="img/gallo2.jpg" alt="Tortilla con natilla" loading="lazy">
-    </div>
   </div>
   <span class="tax">Impuestos incluidos / Taxes included</span>
 </section>
 
-<!-- GALLOS -->
-<section class="page" id="gallos">
-  <div class="cols">
+<!-- ═══════════ GALLOS ═══════════ -->
+<section class="sheet pg-gal" id="gallos">
+  <div class="critter"><img src="img/av-guaria.png" alt=""><span>Guaria Morada</span></div>
+  <div class="grid">
     <div>
-      <div class="sign" style="margin:18px 0 18px"><img src="img/logo.png" alt=""></div>
-      <div class="gallo-strip">
-        <div><img src="img/gallo1.jpg" alt="Gallo de torta de huevo" loading="lazy"></div>
-        <div><img src="img/gallo2.jpg" alt="Tortilla con natilla" loading="lazy"></div>
-        <div><img src="img/gallo3.jpg" alt="Gallo de queso" loading="lazy"></div>
-        <div><img src="img/gallo4.jpg" alt="Gallo de carne" loading="lazy"></div>
+      <div class="sign"><img src="img/logo.png" alt=""></div>
+      <div class="bands">
+        <div class="band"><img src="img/gallo1.jpg" alt="Gallo de torta de huevo" loading="lazy"></div>
+        <div class="band"><img src="img/gallo2.jpg" alt="Tortilla con natilla" loading="lazy"></div>
+        <div class="band"><img src="img/gallo3.jpg" alt="Gallo de queso" loading="lazy"></div>
+        <div class="band"><img src="img/gallo4.jpg" alt="Gallo de carne" loading="lazy"></div>
       </div>
     </div>
     <div class="box">
@@ -378,92 +415,98 @@ footer strong{color:var(--maroon)}
       <ul class="list" data-list="gallos"></ul>
     </div>
   </div>
-  <h2 class="big-green">GALLOS</h2>
-  <span class="tax">Impuestos incluidos / Taxes included</span>
+  <div class="gallos-word"><h2>GALLOS</h2></div>
+  <p class="tax-txt">Impuestos incluidos / Taxes included</p>
 </section>
 
-<!-- CASADOS -->
-<section class="page" id="casados">
-  <div class="head">
-    <div class="casados-photo"><img src="img/cover-casado.jpg" alt="Casado" loading="lazy"></div>
-    <div class="sign"><img src="img/logo.png" alt=""></div>
-  </div>
-  <h2 class="big-red">CASADOS</h2>
+<!-- ═══════════ CASADOS ═══════════ -->
+<section class="sheet pg-cas" id="casados">
+  <div class="photo"><img src="img/cover-casado.jpg" alt="Casado" loading="lazy"></div>
+  <div class="sign"><img src="img/logo.png" alt=""></div>
+  <div class="critter"><img src="img/av-colibri.png" alt="Colibrí"></div>
+  <h2>CASADOS</h2>
   <div class="box">
     <div class="ban">Casados con/<em>with:</em></div>
     <ul class="list" data-list="casados"></ul>
   </div>
-  <span class="tax">Impuestos incluidos / Taxes included</span>
+  <span class="tax l">Impuestos incluidos / Taxes included</span>
 </section>
 
-<!-- OTROS + ARROCES -->
-<section class="page" id="otros">
-  <div class="otros-head">
-    <div class="circle o"><img src="img/otros.jpg" alt="Aliñada" loading="lazy"></div>
-    <h2 class="otros-title">OTROS</h2>
-    <div class="sign"><img src="img/logo.png" alt=""></div>
-  </div>
-  <div class="box"><ul class="list" data-list="otros"></ul></div>
-
-  <div class="arroces-title" id="arroces">
-    <h2><span class="t-es" style="display:block">ARROCES</span><span class="t-en">RICE</span></h2>
-  </div>
-  <div class="cols">
-    <div class="box"><ul class="list" data-list="arroces"></ul></div>
-    <div class="circle"><img src="img/arroz.jpg" alt="Arroz con camarones" loading="lazy"></div>
-  </div>
-  <span class="tax">Impuestos incluidos / Taxes included</span>
-</section>
-
-<!-- ADICIONALES -->
-<section class="page" id="adicionales">
+<!-- ═══════════ OTROS + ARROCES ═══════════ -->
+<section class="sheet pg-otr" id="otros">
+  <div class="sign"><img src="img/logo.png" alt=""></div>
+  <div class="critter"><img src="img/av-tucan.png" alt=""><span>Tucán Pico Iris</span></div>
   <div class="head">
-    <h2><span class="t-es" style="display:block">Adicionales</span><span class="t-en">Adicional</span></h2>
-    <div class="sign"><img src="img/logo.png" alt=""></div>
+    <div class="ph"><img src="img/otros.jpg" alt="Aliñada" loading="lazy"></div>
+    <h2 class="otros">OTROS</h2>
   </div>
-  <div class="cols c-2">
+  <div class="box b1"><ul class="list" data-list="otros"></ul></div>
+
+  <div class="arr-title" id="arroces">
+    <h2><span class="t-es">ARROCES</span><span class="t-en">RICE</span></h2>
+  </div>
+  <div class="box b2"><ul class="list" data-list="arroces"></ul></div>
+  <div class="circle rice-ph"><img src="img/arroz.jpg" alt="Arroz con camarones" loading="lazy"></div>
+  <span class="tax l">Impuestos incluidos / Taxes included</span>
+</section>
+
+<!-- ═══════════ ADICIONALES (1) ═══════════ -->
+<section class="sheet pg-ad1" id="adicionales">
+  <h2><span class="t-es">Adicionales</span><span class="t-en">Adicional</span></h2>
+  <div class="sign"><img src="img/logo.png" alt=""></div>
+  <div class="critter"><img src="img/av-lapa.png" alt=""><span>Lapa Roja</span></div>
+  <div class="grid">
     <div class="box"><ul class="list" data-list="adicionales1"></ul></div>
-    <div>
-      <div class="box"><ul class="list" data-list="adicionales2"></ul></div>
-      <div class="box"><ul class="list" data-list="adicionales3"></ul></div>
+    <div class="circles">
+      <div class="circle"><img src="img/bistec.jpg" alt="Bistec encebollado" loading="lazy"></div>
+      <div class="circle"><img src="img/patacones.jpg" alt="Plátano maduro" loading="lazy"></div>
+      <div class="circle"><img src="img/tocineta.jpg" alt="Tocineta" loading="lazy"></div>
+      <span class="vtax">Impuestos incluidos / Taxes included</span>
     </div>
   </div>
-  <div class="photo-row">
-    <div class="circle o"><img src="img/bistec.jpg" alt="Bistec" loading="lazy"></div>
-    <div class="circle"><img src="img/patacones.jpg" alt="Patacones" loading="lazy"></div>
-    <div class="circle o"><img src="img/tocineta.jpg" alt="Tocineta" loading="lazy"></div>
-    <div class="circle"><img src="img/olla.jpg" alt="Olla de carne" loading="lazy"></div>
-  </div>
-  <span class="tax">Impuestos incluidos / Taxes included</span>
 </section>
 
-<!-- BEBIDAS / NIÑOS / CALIENTES -->
-<section class="page" id="bebidas">
-  <div class="head">
-    <h2><span class="t-es">BEBIDAS</span> <span class="t-en">DRINKS</span></h2>
+<!-- ═══════════ ADICIONALES (2) ═══════════ -->
+<section class="sheet pg-ad2">
+  <div class="critter"><img src="img/av-perezoso.png" alt=""><span>Perezoso de tres dedos</span></div>
+  <div class="top">
     <div class="sign"><img src="img/logo.png" alt=""></div>
+    <h2><span class="t-es">Adicionales</span><span class="t-en">Adicional</span></h2>
   </div>
-  <div class="cols">
-    <div>
+  <div class="grid">
+    <div class="box left"><ul class="list" data-list="adicionales2"></ul></div>
+    <div class="right">
+      <div class="box right"><ul class="list" data-list="adicionales3"></ul></div>
+      <span class="tax">Impuestos incluidos / Taxes included</span>
+      <div class="circle olla"><img src="img/olla.jpg" alt="Olla de carne" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BEBIDAS / NIÑOS / CALIENTES ═══════════ -->
+<section class="sheet pg-beb" id="bebidas">
+  <div class="grid">
+    <div class="left">
+      <h2 class="bebidas"><span class="t-es">BEBIDAS</span> <span class="t-en">DRINKS</span></h2>
       <div class="box"><ul class="list" data-list="bebidas"></ul></div>
       <div class="extra">
         <div class="es">Empaques para llevar</div>
         <div class="ln"><span class="en">Takeout containers</span><span class="dots"></span><span class="p">200</span></div>
       </div>
+      <div style="height:5cqw"></div>
+      <span class="tax">Impuestos incluidos / Taxes included</span>
     </div>
-    <div>
-      <div class="sub-head" id="ninos">
-        <h2><span class="t-es" style="display:block">MENÚ<br>PARA NIÑOS</span><span class="t-en">KIDS MENU</span></h2>
-      </div>
+    <div class="right">
+      <div class="sign"><img src="img/logo.png" alt=""></div>
+      <div class="critter"><img src="img/av-yiguirro.png" alt=""><span>Yigüirro</span></div>
+      <h2 class="kids" id="ninos"><span class="t-es">MENÚ<br>PARA NIÑOS</span><span class="t-en">KIDS MENU</span></h2>
       <div class="box"><ul class="list" data-list="ninos"></ul></div>
       <div class="box"><ul class="list" data-list="postres"></ul></div>
-      <div class="sub-head" id="calientes" style="margin-top:24px">
-        <h2><span class="t-es" style="display:block">BEBIDAS CALIENTES</span><span class="t-en">HOT DRINKS</span></h2>
-      </div>
-      <div class="box"><ul class="list" data-list="calientes"></ul></div>
+      <h2 class="hot" id="calientes"><span class="t-es">BEBIDAS CALIENTES</span><span class="t-en">HOT DRINKS</span></h2>
+      <div class="box last"><ul class="list" data-list="calientes"></ul></div>
+      <span class="tax l mobile-tax">Impuestos incluidos / Taxes included</span>
     </div>
   </div>
-  <span class="tax">Impuestos incluidos / Taxes included</span>
 </section>
 
 </main>
@@ -595,7 +638,7 @@ const MENU = {
     ['Agua en botella grande', 'Big size water bottle', 2000],
     ['Aloe', 'Aloe', 1500],
     ['Gaseosa 3 litros', '3-liter soda', 3500],
-    ['Jugo de tomate <span class="it">(con/sin chile)</span>', 'Tomato Juice', 700],
+    ['Jugo de tomate <i>(con/sin chile)</i>', 'Tomato Juice', 700],
     ['Café frío', 'Iced Coffee', 2500],
   ],
   ninos: [
@@ -632,8 +675,7 @@ function markActive() {
   let cur = 0;
   targets.forEach((t, i) => { if (t.getBoundingClientRect().top < 140) cur = i; });
   links.forEach((a, i) => a.classList.toggle('on', i === cur));
-  const on = links[cur];
-  const ul = on.closest('ul');
+  const on = links[cur], ul = on.closest('ul');
   ul.scrollTo({ left: on.getBoundingClientRect().left - ul.getBoundingClientRect().left + ul.scrollLeft - 16, behavior: 'smooth' });
 }
 let raf; addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(markActive); }, { passive: true });
