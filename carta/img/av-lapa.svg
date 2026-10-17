@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<style>
+.wing{transform-origin:50px 40px;animation:flap 3s ease-in-out infinite}
+.bird{animation:bob 3s ease-in-out infinite}
+@keyframes flap{0%,70%,100%{transform:none}76%,88%{transform:rotate(-22deg)}82%,94%{transform:none}}
+@keyframes bob{50%{transform:translateY(-2px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0262B"/><stop offset=".34" stop-color="#E0262B"/><stop offset=".36" stop-color="#FFC928"/><stop offset=".56" stop-color="#FFC928"/><stop offset=".58" stop-color="#3FA34D"/><stop offset=".64" stop-color="#3FA34D"/><stop offset=".66" stop-color="#1E6FD9"/><stop offset="1" stop-color="#1E6FD9"/></linearGradient></defs>
+<path d="M3 70C30 66 64 72 97 67" stroke="#6B4423" stroke-width="5" stroke-linecap="round" fill="none"/>
+<g class="bird" stroke="#2B2522" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+<path d="M42 62L41 70M50 62L50 70" fill="none" stroke="#6F6F6F" stroke-width="2.6"/>
+<path d="M56 58L70 98L61 99L50 62Z" fill="#E0262B"/>
+<path d="M62 74L70 98L65 98.6Z" fill="#1E6FD9" stroke="none"/>
+<path d="M36 30C50 22 64 36 62 54C60 68 46 70 40 62C34 52 30 38 36 30Z" fill="#E0262B"/>
+<g class="wing"><path d="M47 37C61 34 71 48 68 72C61 74 53 66 49 56C47 50 46 43 47 37Z" fill="url(#wg)"/></g>
+<circle cx="34" cy="28" r="11" fill="#E0262B"/>
+<ellipse cx="32" cy="30" rx="7" ry="6" fill="#F6EFE6" stroke-width="1.2"/>
+<circle cx="33" cy="28.5" r="2.2" fill="#2B2522" stroke="none"/><circle cx="32.4" cy="27.8" r=".8" fill="#fff" stroke="none"/>
+<path d="M26 23C17 21 13 30 18 39C20 34 22 32 26 32Z" fill="#EFE3CA"/>
+<path d="M26 32C22 33 21 37 24 38.5C26 37 27 35 27 33Z" fill="#2B2522"/>
+</g>
+</svg>

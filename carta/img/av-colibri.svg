@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<style>
+.wing{transform-origin:56px 50px;animation:buzz .09s linear infinite alternate}
+.hover{animation:hov 1.8s ease-in-out infinite}
+@keyframes buzz{from{transform:rotate(-32deg)}to{transform:rotate(30deg)}}
+@keyframes hov{50%{transform:translate(1px,-4px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<g class="hover" stroke="#2B2522" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+<path d="M66 60L91 69L87 77L81 73L83 82L74 76Z" fill="#1B6B4A"/>
+<path d="M34 46C40 34 62 38 72 52C78 62 70 70 58 68C44 66 32 58 34 46Z" fill="#2DBE7A"/>
+<path d="M44 61C52 66 61 67 67 64" fill="none" stroke="#B9F0CF" stroke-width="3"/>
+<circle cx="36" cy="40" r="10.5" fill="#22A86B"/>
+<path d="M28 46C32 53 40 53 45 48" fill="#E0457B"/>
+<path d="M26.5 41L4 47" stroke-width="2.8"/>
+<circle cx="35" cy="38" r="3.4" fill="#fff" stroke-width="1.2"/>
+<circle cx="34.3" cy="38" r="1.8" fill="#2B2522" stroke="none"/>
+<g class="wing"><path d="M56 50C52 30 60 14 77 9C81 22 73 40 56 50Z" fill="#A8EBCB" fill-opacity=".92"/></g>
+</g>
+</svg>

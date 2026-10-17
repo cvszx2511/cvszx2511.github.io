@@ -70,9 +70,14 @@ img{max-width:100%;display:block}
 .critter{position:absolute;z-index:4;pointer-events:none}
 .critter img{width:100%}
 .critter span{
-  position:absolute;white-space:nowrap;
-  font-size:max(8px,1.45cqw);font-weight:600;letter-spacing:.01em;
+  position:absolute;left:50%;top:96%;transform:translateX(-50%) rotate(-5deg);white-space:nowrap;
+  font-size:max(8.5px,1.5cqw);font-weight:700;font-style:italic;letter-spacing:.01em;color:#4A3B30;
 }
+.pg-des .critter span{color:#fff;text-shadow:0 0 3px rgba(0,0,0,.8)}
+.pg-gal .critter span{color:#6A2E8C}
+.pg-cas .critter span{color:#1F7A4F}
+.pg-otr .critter span{color:#2F6E66}
+.pg-ad1 .critter span{color:#C2303A}
 
 /* caja amarilla */
 .box{
@@ -187,14 +192,12 @@ img{max-width:100%;display:block}
 .pg-des .ban{margin-left:-3.2cqw;border-radius:.5em 2em 2em 0}
 .pg-des .note{position:relative;z-index:1;font-size:max(10px,1.55cqw);color:var(--soft);margin:.5em 0 1.1em}
 .pg-des .tax{margin:2.6cqw 0 3.6cqw 9cqw;width:76cqw}
-.pg-des .critter{top:20.5cqw;right:24cqw;width:8cqw}
-.pg-des .critter span{left:-3cqw;top:6.5cqw;transform:rotate(38deg);transform-origin:left top;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.7)}
+.pg-des .critter{top:21cqw;right:22cqw;width:11cqw}
 
 /* ════════ GALLOS ════════ */
 .pg-gal .grid{display:grid;grid-template-columns:29cqw 1fr;gap:3cqw;padding:5cqw 4.5cqw 0 0}
 .pg-gal .sign{position:relative;margin:2.5cqw 0 0 7cqw}
-.pg-gal .critter{top:14cqw;left:23cqw;width:11cqw}
-.pg-gal .critter span{color:#5B2A7A;left:-3cqw;top:10cqw;transform:rotate(18deg)}
+.pg-gal .critter{top:14cqw;left:22cqw;width:12cqw}
 .pg-gal .bands{margin-top:9cqw}
 .pg-gal .band{padding:1.3cqw 1.3cqw 1.3cqw 0;border-radius:0 3cqw 3cqw 0;margin-bottom:.4cqw}
 .pg-gal .band img{width:100%;aspect-ratio:1.55;object-fit:cover;border-radius:0 2.4cqw 2.4cqw 0}
@@ -230,7 +233,7 @@ img{max-width:100%;display:block}
 }
 .pg-cas .photo img{width:100%;height:100%;object-fit:cover;object-position:30% 50%}
 .pg-cas .sign{top:5cqw;right:7cqw}
-.pg-cas .critter{top:21cqw;right:9cqw;width:10cqw}
+.pg-cas .critter{top:21cqw;right:10cqw;width:12cqw}
 .pg-cas h2{
   position:absolute;z-index:3;left:5cqw;top:45cqw;
   font-weight:800;color:var(--red);font-size:16cqw;line-height:.8;letter-spacing:-.01em;
@@ -246,8 +249,7 @@ img{max-width:100%;display:block}
 .pg-otr .head .ph img{width:100%;height:100%;object-fit:cover}
 .pg-otr h2.otros{font-family:'Oswald','Roboto Condensed',sans-serif;font-weight:700;color:var(--red-otros);font-size:12.5cqw;line-height:1;letter-spacing:-.01em}
 .pg-otr .sign{top:2cqw;right:13cqw;width:18cqw}
-.pg-otr .critter{top:16cqw;right:4.5cqw;width:11cqw}
-.pg-otr .critter span{color:#2F6E66;left:-1cqw;top:5cqw;transform:rotate(16deg)}
+.pg-otr .critter{top:15cqw;right:3cqw;width:12cqw}
 .pg-otr .box.b1{margin:0 16cqw 0 7.5cqw;padding:2.6cqw 3.4cqw 3.4cqw 5.6cqw}
 .pg-otr .arr-title{text-align:right;padding:2cqw 5cqw 0 0;position:relative;z-index:2}
 .pg-otr .arr-title .t-es{font-size:16.5cqw;line-height:.92}
@@ -259,8 +261,7 @@ img{max-width:100%;display:block}
 /* ════════ ADICIONALES (1) ════════ */
 .pg-ad1 h2{padding:4cqw 0 0 3cqw;font-size:9.6cqw}
 .pg-ad1 .sign{top:4cqw;right:12cqw;width:22cqw}
-.pg-ad1 .critter{top:16cqw;right:4cqw;width:9cqw}
-.pg-ad1 .critter span{color:#C2475A;left:4cqw;top:9cqw;transform:rotate(-58deg);transform-origin:left top}
+.pg-ad1 .critter{top:15cqw;right:2.5cqw;width:12cqw}
 .pg-ad1 .grid{display:grid;grid-template-columns:61cqw 1fr;margin-top:3cqw;padding-bottom:4cqw}
 .pg-ad1 .box{margin-left:3cqw;padding:3cqw 3cqw 3.4cqw 4cqw}
 .pg-ad1 .circles{position:relative;padding-top:6cqw}
@@ -276,8 +277,7 @@ img{max-width:100%;display:block}
 /* ════════ ADICIONALES (2) ════════ */
 .pg-ad2,.pg-beb{font-size:clamp(13.5px,2.2cqw,17px)}
 .pg-ad2 .sign{position:relative;margin:4cqw 0 0 9cqw;width:22cqw}
-.pg-ad2 .critter{top:19cqw;left:7cqw;width:11cqw}
-.pg-ad2 .critter span{color:#333;left:-4cqw;top:12cqw;transform:rotate(-30deg);transform-origin:left top}
+.pg-ad2 .critter{top:15.5cqw;left:9cqw;width:12cqw}
 .pg-ad2 .top{display:flex;align-items:flex-start}
 .pg-ad2 h2{padding:4.5cqw 0 0 5cqw;font-size:9.4cqw}
 .pg-ad2 .grid{display:grid;grid-template-columns:45cqw 43cqw;gap:2cqw;padding-left:6.5cqw;margin-top:3cqw;align-items:start}
@@ -296,8 +296,7 @@ img{max-width:100%;display:block}
 .pg-beb .left .tax{margin:auto 0 0 -3cqw;width:calc(100% + 3cqw);padding-left:6cqw}
 .pg-beb .right{position:relative;padding:35cqw 5cqw 4cqw 0}
 .pg-beb .sign{top:3cqw;right:9cqw;width:22cqw}
-.pg-beb .critter{top:14cqw;right:1cqw;width:9cqw}
-.pg-beb .critter span{color:#333;left:2cqw;top:7cqw;transform:rotate(18deg)}
+.pg-beb .critter{top:13cqw;right:.5cqw;width:11cqw}
 .pg-beb .kids{position:absolute;top:16cqw;left:0}
 .pg-beb .kids .t-es{font-size:5.6cqw}
 .pg-beb .kids .t-en{font-size:7.2cqw}
@@ -385,7 +384,7 @@ footer strong{color:var(--maroon)}
 <section class="sheet pg-des" id="desayunos">
   <div class="photo"><img src="img/desayuno.jpg" alt="Carne en salsa" loading="lazy"></div>
   <div class="sign"><img src="img/logo.png" alt=""></div>
-  <div class="critter"><img src="img/av-morpho.png" alt=""><span>Mariposa Morpho</span></div>
+  <div class="critter"><img src="img/av-morpho.svg" alt=""><span>Mariposa Morpho</span></div>
   <div class="main">
     <h2><span class="t-es">DESAYUNOS</span><span class="t-en">BREAKFAST</span></h2>
     <div class="box">
@@ -399,7 +398,7 @@ footer strong{color:var(--maroon)}
 
 <!-- ═══════════ GALLOS ═══════════ -->
 <section class="sheet pg-gal" id="gallos">
-  <div class="critter"><img src="img/av-guaria.png" alt=""><span>Guaria Morada</span></div>
+  <div class="critter"><img src="img/av-guaria.svg" alt=""><span>Guaria Morada</span></div>
   <div class="grid">
     <div>
       <div class="sign"><img src="img/logo.png" alt=""></div>
@@ -423,7 +422,7 @@ footer strong{color:var(--maroon)}
 <section class="sheet pg-cas" id="casados">
   <div class="photo"><img src="img/cover-casado.jpg" alt="Casado" loading="lazy"></div>
   <div class="sign"><img src="img/logo.png" alt=""></div>
-  <div class="critter"><img src="img/av-colibri.png" alt="Colibrí"></div>
+  <div class="critter"><img src="img/av-colibri.svg" alt=""><span>Colibrí</span></div>
   <h2>CASADOS</h2>
   <div class="box">
     <div class="ban">Casados con/<em>with:</em></div>
@@ -435,7 +434,7 @@ footer strong{color:var(--maroon)}
 <!-- ═══════════ OTROS + ARROCES ═══════════ -->
 <section class="sheet pg-otr" id="otros">
   <div class="sign"><img src="img/logo.png" alt=""></div>
-  <div class="critter"><img src="img/av-tucan.png" alt=""><span>Tucán Pico Iris</span></div>
+  <div class="critter"><img src="img/av-tucan.svg" alt=""><span>Tucán Pico Iris</span></div>
   <div class="head">
     <div class="ph"><img src="img/otros.jpg" alt="Aliñada" loading="lazy"></div>
     <h2 class="otros">OTROS</h2>
@@ -454,7 +453,7 @@ footer strong{color:var(--maroon)}
 <section class="sheet pg-ad1" id="adicionales">
   <h2><span class="t-es">Adicionales</span><span class="t-en">Adicional</span></h2>
   <div class="sign"><img src="img/logo.png" alt=""></div>
-  <div class="critter"><img src="img/av-lapa.png" alt=""><span>Lapa Roja</span></div>
+  <div class="critter"><img src="img/av-lapa.svg" alt=""><span>Lapa Roja</span></div>
   <div class="grid">
     <div class="box"><ul class="list" data-list="adicionales1"></ul></div>
     <div class="circles">
@@ -468,7 +467,7 @@ footer strong{color:var(--maroon)}
 
 <!-- ═══════════ ADICIONALES (2) ═══════════ -->
 <section class="sheet pg-ad2">
-  <div class="critter"><img src="img/av-perezoso.png" alt=""><span>Perezoso de tres dedos</span></div>
+  <div class="critter"><img src="img/av-perezoso.svg" alt=""><span>Perezoso de tres dedos</span></div>
   <div class="top">
     <div class="sign"><img src="img/logo.png" alt=""></div>
     <h2><span class="t-es">Adicionales</span><span class="t-en">Adicional</span></h2>
@@ -498,7 +497,7 @@ footer strong{color:var(--maroon)}
     </div>
     <div class="right">
       <div class="sign"><img src="img/logo.png" alt=""></div>
-      <div class="critter"><img src="img/av-yiguirro.png" alt=""><span>Yigüirro</span></div>
+      <div class="critter"><img src="img/av-yiguirro.svg" alt=""><span>Yigüirro</span></div>
       <h2 class="kids" id="ninos"><span class="t-es">MENÚ<br>PARA NIÑOS</span><span class="t-en">KIDS MENU</span></h2>
       <div class="box"><ul class="list" data-list="ninos"></ul></div>
       <div class="box"><ul class="list" data-list="postres"></ul></div>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<style>
+.head{transform-origin:48px 46px;animation:tilt 3.6s ease-in-out infinite}
+.bird{animation:bob 3.6s ease-in-out infinite}
+@keyframes tilt{0%,55%,100%{transform:none}65%,80%{transform:rotate(-12deg)}90%{transform:none}}
+@keyframes bob{50%{transform:translateY(-2px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<defs><linearGradient id="bk" x1="0" x2="1"><stop offset="0" stop-color="#E8432F"/><stop offset=".18" stop-color="#E8432F"/><stop offset=".2" stop-color="#F7A21B"/><stop offset=".46" stop-color="#F7A21B"/><stop offset=".48" stop-color="#7CC242"/><stop offset="1" stop-color="#7CC242"/></linearGradient></defs>
+<path d="M3 84C30 80 64 86 97 81" stroke="#6B4423" stroke-width="5" stroke-linecap="round" fill="none"/>
+<g class="bird" stroke="#2B2522" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+<path d="M48 76L46 84M56 76L56 84" fill="none"/>
+<path d="M62 64L78 96L70 98L56 70Z" fill="#1F1F24"/>
+<path d="M44 40C60 36 72 52 68 68C64 80 46 82 40 70C34 58 34 44 44 40Z" fill="#1F1F24"/>
+<path d="M38 46C42 40 51 42 53 50C53 60 47 64 40 62C36 56 36 50 38 46Z" fill="#FFD23F"/>
+<path d="M52 76C57 79 62 78 64 74" fill="#E53935"/>
+<g class="head">
+<circle cx="47" cy="36" r="10" fill="#1F1F24"/>
+<path d="M40 30C26 24 9 31 3 45C14 45 28 44 40 42Z" fill="url(#bk)"/>
+<path d="M7 44.6C20 44.4 30 43.5 40 42" fill="none" stroke="#3D7BD9" stroke-width="2.6"/>
+<circle cx="47" cy="34" r="3.8" fill="#9BE564" stroke-width="1.3"/>
+<circle cx="46.7" cy="34" r="1.9" fill="#2B2522" stroke="none"/><circle cx="46.1" cy="33.3" r=".7" fill="#fff" stroke="none"/>
+</g>
+</g>
+</svg>

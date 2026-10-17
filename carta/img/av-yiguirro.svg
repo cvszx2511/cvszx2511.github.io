@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<style>
+.bird{animation:hop 3.2s ease-in-out infinite}
+.tail{transform-origin:64px 62px;animation:flick 3.2s ease-in-out infinite}
+@keyframes hop{0%,60%,100%{transform:none}68%{transform:translateY(-7px)}76%{transform:none}}
+@keyframes flick{0%,30%,100%{transform:none}38%{transform:rotate(-16deg)}46%{transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<path d="M3 83C30 78 62 85 97 79" stroke="#6B4423" stroke-width="5" stroke-linecap="round" fill="none"/>
+<path d="M80 80C84 72 92 70 96 72C92 78 86 80 80 80Z" fill="#6DB04B" stroke="#2B2522" stroke-width="1.6"/>
+<g class="bird" stroke="#2B2522" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+<path d="M42 72L40 81M53 73L53 81" fill="none"/>
+<g class="tail"><path d="M63 58L90 71L86 78L59 68Z" fill="#7C6142"/></g>
+<path d="M26 46C26 30 46 26 56 36C70 44 72 62 62 70C52 78 34 76 28 64C25 58 25 52 26 46Z" fill="#A88A63"/>
+<path d="M30 57C35 70 50 74 58 68C50 70 39 66 30 57Z" fill="#DCC6A0" stroke="none"/>
+<path d="M44 46C56 44 66 52 66 62C58 64 48 60 44 46Z" fill="#8A6C49"/>
+<path d="M27 42L14 46L27 49Z" fill="#C9A43A"/>
+<circle cx="35" cy="40" r="4.2" fill="#EAB54C" stroke-width="1.4"/>
+<circle cx="34.6" cy="40" r="2.1" fill="#2B2522" stroke="none"/><circle cx="34" cy="39.2" r=".8" fill="#fff" stroke="none"/>
+</g>
+</svg>
